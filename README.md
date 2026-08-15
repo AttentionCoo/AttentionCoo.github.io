@@ -1,13 +1,16 @@
 # AttentionCoo.github.io
 
-我的 GitHub Pages 个人主页 —— 一个现代、响应式的单页网站，纯 HTML / CSS / JavaScript 实现，无需任何构建步骤。
+我的 GitHub Pages 星空小站 —— 一个梦幻风格的响应式单页网站，纯 HTML / CSS / JavaScript 实现，无需任何构建步骤。
 
 ## ✨ 特性
 
-- 🌑 深色现代设计，渐变点缀
+- 🌌 星空银河主题：Canvas 星空粒子、流星、流动极光光斑
+- 🪐 玻璃拟态卡片 + 渐变光晕，梦幻紫色调
 - ⌨️ 打字机效果的首屏介绍
 - 📊 滚动触发动画：内容显现、技能条填充、数字滚动
-- 📱 完全响应式，移动端汉堡菜单
+- 🏆 得意项目展示：脑卒中多智能体 CDSS、中国软件杯学习多智能体
+- 📜 CVPR 2026 Findings 论文卡片（VisMet-Bench）
+- 📱 完全响应式，移动端汉堡菜单，支持 `prefers-reduced-motion`
 - ⚡ 零依赖，加载速度快
 
 ## 🚀 本地预览
@@ -44,8 +47,9 @@ git push -u origin master
 | 名字 / 简介    | `index.html` 首屏与「关于我」区块      |
 | 技能列表与熟练度 | `js/main.js` 顶部的 `skills` 数组     |
 | 项目卡片       | `js/main.js` 顶部的 `projects` 数组   |
+| 论文信息       | `js/main.js` 顶部的 `publication` 对象 |
 | 联系方式       | `index.html` 的「联系」区块            |
-| 配色主题       | `css/style.css` 顶部的 `:root` 变量    |
+| 配色 / 极光 / 星空 | `css/style.css` 的 `:root` 变量与 `.blob` 样式 |
 
 ## 📄 目录结构
 
@@ -55,6 +59,6 @@ git push -u origin master
 ├── css/
 │   └── style.css   # 全部样式
 ├── js/
-│   └── main.js     # 数据与交互逻辑
+│   └── main.js     # 数据与交互逻辑（含星空引擎）
 └── README.md
 ```
