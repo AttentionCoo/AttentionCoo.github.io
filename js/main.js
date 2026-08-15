@@ -172,12 +172,12 @@ const data = {
       stars: 8,
       forks: 1,
       desc: {
-        zh: "基于角色扮演的脑卒中多智能体 Web 医疗辅助决策系统 (CDSS)：集成 LangGraph 纵横矩阵协同、高级 Hybrid RAG 知识检索与全栈响应式 (SSE) 流式数据管道，实现高合规、低幻觉的临床智能会诊。",
-        en: "A role-playing multi-agent clinical decision support system (CDSS) for stroke care: LangGraph orchestration, hybrid RAG knowledge retrieval and a full-stack reactive SSE streaming pipeline — compliant, low-hallucination clinical consultation.",
+        zh: "多智能体深度检索脑卒中临床辅助决策支持系统 (CDSS)：以本地医学文献与临床指南为知识底座，融合 Hybrid RAG 混合检索与 LangGraph 多智能体协同推理，配合结构化绿道预评估、医生复核审计与 SSE 流式会诊，践行「证据先行 · 过程透明 · 结果合规 · 时效硬管控」。",
+        en: "A multi-agent, deep-retrieval clinical decision support system (CDSS) for stroke care: built on a knowledge base of local medical literature and clinical guidelines, combining Hybrid RAG retrieval with LangGraph multi-agent reasoning, structured green-channel triage, physician review & audit, and SSE streaming consultation — evidence-first, transparent, compliant and time-controlled.",
       },
       tags: {
-        zh: ["LangGraph", "Hybrid RAG", "SSE 流式", "Multi-Agent"],
-        en: ["LangGraph", "Hybrid RAG", "SSE Streaming", "Multi-Agent"],
+        zh: ["LangGraph", "Hybrid RAG", "多智能体会诊", "SSE 流式"],
+        en: ["LangGraph", "Hybrid RAG", "Multi-Agent", "SSE Streaming"],
       },
     },
     {
@@ -188,12 +188,12 @@ const data = {
       stars: 4,
       forks: 0,
       desc: {
-        zh: "第十五届「中国软件杯」大学生软件设计大赛 A3 赛题参赛作品 —— 基于大模型的个性化资源生成与学习多智能体系统开发（出题企业：科大讯飞股份有限公司）。",
-        en: "Entry for the 15th 'China Software Cup' university software design contest (track A3, by iFLYTEK): a personalized resource generation and learning multi-agent system powered by LLMs.",
+        zh: "「中国软件杯」A3 赛题参赛作品 LearnAgent：面向脑卒中医学教育的多智能体个性化学习系统 —— 9 位专家智能体协同，覆盖 8 维学习画像、8 类资源生成、路径规划、循证辅导、五维评估、Qwen-VL 医学影像分析与代码辅助，全流程 SSE 可审计。",
+        en: "LearnAgent, our 'China Software Cup' track A3 entry: a multi-agent personalized learning system for stroke medical education — nine expert agents covering 8-dimension learner profiling, 8-type resource generation, path planning, evidence-based tutoring, 5-dimension assessment, Qwen-VL medical imaging analysis and code assistance, all auditable through SSE streaming.",
       },
       tags: {
-        zh: ["大模型", "Multi-Agent", "RAG", "中国软件杯"],
-        en: ["LLM", "Multi-Agent", "RAG", "Software Cup"],
+        zh: ["Vue 3", "Spring Boot", "LangGraph", "9 位专家智能体"],
+        en: ["Vue 3", "Spring Boot", "LangGraph", "9 Expert Agents"],
       },
     },
     {
@@ -204,12 +204,12 @@ const data = {
       stars: 1,
       forks: 0,
       desc: {
-        zh: "使用强正则化的 FT-Transformer 解决 Kaggle Titanic 二分类问题：Title / FamilySize 特征工程、DropPath、特征残差连接与 5-Fold 交叉验证，极致压榨小数据集性能。",
-        en: "Solving the Kaggle Titanic binary classification with a heavily regularized FT-Transformer: Title / FamilySize feature engineering, DropPath, feature residual connections and 5-fold cross-validation to squeeze a small dataset to the limit.",
+        zh: "Kaggle Titanic 生还预测：用 FT-Transformer（Feature Tokenizer + Transformer）攻克表格数据二分类 —— Title / FamilySize / Deck 特征工程、CLS Token 与特征残差连接、DropPath 强正则化，5-Fold 交叉验证准确率 84.51% ± 1.24%，五折集成推理可直接提交。",
+        en: "Kaggle Titanic survival prediction with FT-Transformer (Feature Tokenizer + Transformer) for tabular binary classification: Title / FamilySize / Deck feature engineering, CLS token with feature residual connections, DropPath regularization — 84.51% ± 1.24% 5-fold CV accuracy, with 5-fold ensembled inference ready for submission.",
       },
       tags: {
-        zh: ["PyTorch", "FT-Transformer", "表格深度学习", "Kaggle"],
-        en: ["PyTorch", "FT-Transformer", "Tabular DL", "Kaggle"],
+        zh: ["PyTorch", "FT-Transformer", "5-Fold CV 84.5%", "Kaggle"],
+        en: ["PyTorch", "FT-Transformer", "84.5% CV", "Kaggle"],
       },
     },
   ],
