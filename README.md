@@ -1,16 +1,16 @@
 # AttentionCoo.github.io
 
-我的 GitHub Pages 星空小站 —— 一个梦幻风格的响应式单页网站，纯 HTML / CSS / JavaScript 实现，无需任何构建步骤。
+我的 GitHub Pages 个人主页 —— 星空极光背景 + Material Design 3 设计体系（分屏布局参考 Tuning-Luna.github.io），纯 HTML / CSS / JavaScript 实现，零依赖、零构建。
 
 ## ✨ 特性
 
-- 🌌 星空银河主题：Canvas 星空粒子、流星、流动极光光斑
-- 🪐 玻璃拟态卡片 + 渐变光晕，梦幻紫色调
-- ⌨️ 打字机效果的首屏介绍
-- 📊 滚动触发动画：内容显现、技能条填充、数字滚动
-- 🏆 得意项目展示：脑卒中多智能体 CDSS、中国软件杯学习多智能体
-- 📜 CVPR 2026 Findings 论文卡片（VisMet-Bench）
-- 📱 完全响应式，移动端汉堡菜单，支持 `prefers-reduced-motion`
+- 🪐 分屏布局：右侧固定玻璃英雄面板（个人名片）+ 左侧滚动内容
+- 🌌 星空银河背景：Canvas 星空粒子、流星、流动极光光斑
+- 🎨 Material Design 3 设计令牌：字阶、间距、形状、阴影、动效全部走 CSS 变量
+- 🖱️ 光标聚光灯：鼠标划过个人卡片时浮现光晕
+- 🌐 中英双语切换（记忆偏好，首帧不闪烁）
+- 📜 CVPR 2026 Findings 论文卡片（VisMet-Bench）+ 两个得意项目
+- 📱 完全响应式，支持 `prefers-reduced-motion`
 - ⚡ 零依赖，加载速度快
 
 ## 🚀 本地预览
@@ -18,7 +18,6 @@
 直接用浏览器打开 `index.html` 即可，或者用任意静态服务器：
 
 ```bash
-# Python
 python -m http.server 8000
 # 然后访问 http://localhost:8000
 ```
@@ -42,14 +41,15 @@ git push -u origin master
 
 ## ✏️ 自定义
 
-| 想改什么       | 去哪里改                             |
-| -------------- | ------------------------------------ |
-| 名字 / 简介    | `index.html` 首屏与「关于我」区块      |
-| 技能列表与熟练度 | `js/main.js` 顶部的 `skills` 数组     |
-| 项目卡片       | `js/main.js` 顶部的 `projects` 数组   |
-| 论文信息       | `js/main.js` 顶部的 `publication` 对象 |
-| 联系方式       | `index.html` 的「联系」区块            |
-| 配色 / 极光 / 星空 | `css/style.css` 的 `:root` 变量与 `.blob` 样式 |
+| 想改什么           | 去哪里改                              |
+| ------------------ | ------------------------------------- |
+| 名字 / 简介        | `index.html`（data-i18n 文案）+ `js/main.js` 的 `i18n` 字典 |
+| 关注方向 / 统计数字 | `js/main.js` 的 `data.focus` / `data.stats` |
+| 技能列表           | `js/main.js` 的 `data.skills`          |
+| 项目卡片           | `js/main.js` 的 `data.projects`        |
+| 论文信息           | `js/main.js` 的 `data.paper`           |
+| 联系方式           | `index.html` 的「联系」区块             |
+| 配色 / 星空 / 极光 | `css/style.css` 顶部的 MD3 色彩令牌与 `.blob` 样式 |
 
 ## 📄 目录结构
 
@@ -57,8 +57,10 @@ git push -u origin master
 .
 ├── index.html      # 页面结构
 ├── css/
-│   └── style.css   # 全部样式
+│   └── style.css   # MD3 设计令牌 + 全部样式
 ├── js/
-│   └── main.js     # 数据与交互逻辑（含星空引擎）
+│   └── main.js     # 数据、i18n、星空引擎与交互
+├── img/
+│   └── avatar.jpg  # GitHub 头像（本地托管）
 └── README.md
 ```

@@ -3,14 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AttentionCoo 的星空小站 — 多智能体系统、大模型应用与多模态研究（CVPR 2026 Findings）" />
+  <meta name="description" content="AttentionCoo 的个人主页 —— AI 开发者与研究者：多智能体系统、大模型应用与多模态研究（CVPR 2026 Findings）。" />
   <meta name="theme-color" content="#06081a" />
-  <title>AttentionCoo ✦ 星空小站</title>
+  <title>AttentionCoo · 个人主页</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌌</text></svg>" />
+  <script>
+    // 首帧前应用已保存的语言，避免闪烁
+    (function () {
+      try {
+        var lang = localStorage.getItem('attentioncoo-lang');
+        document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+      } catch (err) { /* ignore */ }
+    })();
+  </script>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <!-- 星空画布与极光 -->
+  <!-- 星空画布与极光（固定背景层） -->
   <canvas id="stars" aria-hidden="true"></canvas>
   <div class="aurora" aria-hidden="true">
     <span class="blob blob-violet"></span>
@@ -18,140 +27,144 @@
     <span class="blob blob-pink"></span>
   </div>
 
-  <!-- 导航栏 -->
-  <header class="navbar" id="navbar">
-    <div class="container nav-inner">
-      <a href="#home" class="logo">✦ AttentionCoo</a>
-      <nav class="nav-links" id="nav-links">
-        <a href="#home">首页</a>
-        <a href="#about">关于我</a>
-        <a href="#skills">技能</a>
-        <a href="#projects">项目</a>
-        <a href="#publications">论文</a>
-        <a href="#contact">联系</a>
+  <!-- 顶部应用栏 -->
+  <header class="appbar">
+    <div class="container appbar__inner">
+      <a class="appbar__brand" href="#top">
+        <img class="appbar__avatar" src="img/avatar.jpg" alt="" width="32" height="32" />
+        <span class="appbar__name">AttentionCoo</span>
+      </a>
+      <nav class="appbar__nav" aria-label="Primary">
+        <a class="appbar__link" href="#about" data-i18n="nav.about">关于</a>
+        <a class="appbar__link" href="#skills" data-i18n="nav.skills">技能</a>
+        <a class="appbar__link" href="#projects" data-i18n="nav.projects">项目</a>
+        <a class="appbar__link" href="#publications" data-i18n="nav.publications">论文</a>
+        <a class="appbar__link" href="#contact" data-i18n="nav.contact">联系</a>
       </nav>
-      <button class="menu-toggle" id="menu-toggle" aria-label="打开菜单">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="appbar__actions">
+        <div class="lang-toggle" role="group" aria-label="Language / 语言">
+          <button class="lang-btn" type="button" data-lang="zh">中</button>
+          <button class="lang-btn" type="button" data-lang="en">EN</button>
+        </div>
+      </div>
     </div>
   </header>
 
-  <!-- 首屏 -->
-  <section class="hero" id="home">
-    <div class="planet" aria-hidden="true"></div>
-    <span class="sparkle s1" aria-hidden="true">✦</span>
-    <span class="sparkle s2" aria-hidden="true">✧</span>
-    <span class="sparkle s3" aria-hidden="true">✦</span>
-    <span class="sparkle s4" aria-hidden="true">✧</span>
-    <div class="container hero-inner">
-      <p class="hero-greeting">🌙 欢迎来到我的星空小站</p>
-      <h1 class="hero-name">AttentionCoo</h1>
-      <p class="hero-typing">
-        <span class="typing-prefix">我正在 </span>
-        <span class="typing-text" id="typing-text"></span><span class="cursor">|</span>
-      </p>
-      <p class="hero-desc">
-        一名仰望星空、脚踏实地的前行者 —— 构建多智能体系统，探索多模态大模型的边界。
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn btn-primary">✦ 看看我的项目</a>
-        <a href="#publications" class="btn btn-outline">阅读我的论文</a>
-      </div>
-      <div class="scroll-hint" aria-hidden="true">
-        <span class="scroll-text">向下漫游</span>
-        <span class="comet-track"><span class="comet"></span></span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 关于我 -->
-  <section class="section" id="about">
-    <div class="container">
-      <h2 class="section-title reveal">关于我</h2>
-      <div class="about-grid">
-        <div class="about-card glass reveal">
-          <div class="avatar">A</div>
-          <div class="about-text">
-            <p>
-              我是 <strong>AttentionCoo</strong>，一名热爱 AI 的开发者与研究者。
-              我的兴趣集中在<strong>多智能体系统与大模型应用</strong>：从基于 LangGraph 的脑卒中临床决策支持系统，
-              到「中国软件杯」的个性化学习多智能体，再到 <strong>CVPR 2026</strong> 的多模态大模型研究。
-            </p>
-            <p>
-              我相信好的系统源于优雅的设计 —— 无论是代码、智能体的协作方式，
-              还是一次星空下的沉思。✨
-            </p>
+  <!-- 分屏布局：右侧固定英雄面板 + 左侧滚动内容 -->
+  <div class="layout">
+    <aside class="layout__hero">
+      <section id="top" class="hero">
+        <div class="container hero__inner">
+          <img class="hero__avatar" src="img/avatar.jpg" alt="AttentionCoo" width="128" height="128" />
+          <h1 class="hero__name">AttentionCoo</h1>
+          <p class="hero__role" data-i18n="hero.role">AI 开发者 · 多智能体 / 大模型研究</p>
+          <p class="hero__tagline" data-i18n="hero.tagline">仰望星空，脚踏实地 ✦</p>
+          <p class="hero__bio" data-i18n="hero.bio">构建多智能体系统，探索多模态大模型的边界 —— 两个得意项目，一篇 CVPR 论文。欢迎来到我的小站。</p>
+          <div class="hero__actions">
+            <a class="m3-button m3-button--filled" href="#projects">
+              <span class="m3-button__label" data-i18n="hero.ctaProjects">查看项目</span>
+            </a>
+            <a class="m3-button m3-button--tonal" href="https://github.com/AttentionCoo" target="_blank" rel="noopener noreferrer">
+              <span class="m3-button__label">GitHub</span>
+            </a>
           </div>
         </div>
-        <div class="about-stats reveal">
-          <div class="stat glass"><span class="stat-num" data-count="1">0</span><span class="stat-label">CVPR 论文</span></div>
-          <div class="stat glass"><span class="stat-num" data-count="2">0</span><span class="stat-label">旗舰项目</span></div>
-          <div class="stat glass"><span class="stat-num" data-count="12">0</span><span class="stat-label">GitHub Stars</span></div>
-          <div class="stat glass"><span class="stat-num" data-count="999">0</span><span class="stat-label">杯咖啡 ☕</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    </aside>
 
-  <!-- 技能 -->
-  <section class="section" id="skills">
-    <div class="container">
-      <h2 class="section-title reveal">技能星图</h2>
-      <p class="section-sub reveal">我的技术星座</p>
-      <div class="skills-grid" id="skills-grid">
-        <!-- 由 JS 渲染 -->
-      </div>
-    </div>
-  </section>
+    <div class="layout__content">
+      <main>
+        <!-- 关于我 -->
+        <section class="m3-section" id="about">
+          <div class="m3-section__header">
+            <p class="m3-section__eyebrow" data-i18n="about.eyebrow">关于</p>
+            <h2 class="m3-section__title" data-i18n="about.title">关于我</h2>
+          </div>
+          <div class="about__body">
+            <p class="about__p" data-i18n="about.p1">我是 AttentionCoo，一名热爱 AI 的开发者与研究者。我的兴趣集中在多智能体系统与大模型应用：从基于 LangGraph 的脑卒中临床决策支持系统，到「中国软件杯」的个性化学习多智能体。</p>
+            <p class="about__p" data-i18n="about.p2">在研究中，我关注多模态大模型的抽象推理能力 —— 我们在 CVPR 2026 Findings 发表的 VisMet-Bench 基准，系统性评估了模型对纯视觉隐喻的理解。我相信好的系统源于优雅的设计，代码是最接近魔法的东西。</p>
+            <div class="about__focus">
+              <h3 class="about__focus-title" data-i18n="about.focusTitle">关注的方向</h3>
+              <div class="about__chips" id="about-chips">
+                <!-- 由 JS 渲染 -->
+              </div>
+            </div>
+          </div>
+          <div class="about__stats" id="about-stats">
+            <!-- 由 JS 渲染 -->
+          </div>
+        </section>
 
-  <!-- 项目 -->
-  <section class="section" id="projects">
-    <div class="container">
-      <h2 class="section-title reveal">得意之作</h2>
-      <p class="section-sub reveal">两个让我骄傲的项目 ✦</p>
-      <div class="projects-grid featured" id="projects-grid">
-        <!-- 由 JS 渲染 -->
-      </div>
-    </div>
-  </section>
+        <!-- 技能 -->
+        <section class="m3-section" id="skills">
+          <div class="m3-section__header">
+            <p class="m3-section__eyebrow" data-i18n="skills.eyebrow">技能</p>
+            <h2 class="m3-section__title" data-i18n="skills.title">技能星图</h2>
+            <p class="m3-section__subtitle" data-i18n="skills.subtitle">我的技术星座</p>
+          </div>
+          <div class="skills-grid" id="skills-grid">
+            <!-- 由 JS 渲染 -->
+          </div>
+        </section>
 
-  <!-- 论文 -->
-  <section class="section" id="publications">
-    <div class="container">
-      <h2 class="section-title reveal">论文</h2>
-      <p class="section-sub reveal">在学术星空中留下的一颗星</p>
-      <div id="paper-card">
-        <!-- 由 JS 渲染 -->
-      </div>
-    </div>
-  </section>
+        <!-- 项目 -->
+        <section class="m3-section" id="projects">
+          <div class="m3-section__header">
+            <p class="m3-section__eyebrow" data-i18n="projects.eyebrow">项目</p>
+            <h2 class="m3-section__title" data-i18n="projects.title">得意之作</h2>
+            <p class="m3-section__subtitle" data-i18n="projects.subtitle">两个让我骄傲的项目 —— Star 与 Fork 为 GitHub 公开数据快照</p>
+          </div>
+          <h3 class="projects__subhead" data-i18n="projects.featuredTitle">精选项目</h3>
+          <div class="projects__grid" id="projects-grid">
+            <!-- 由 JS 渲染 -->
+          </div>
+          <div class="projects__viewall">
+            <a class="m3-button m3-button--text" href="https://github.com/AttentionCoo?tab=repositories" target="_blank" rel="noopener noreferrer">
+              <span class="m3-button__label" data-i18n="projects.viewAll">在 GitHub 查看全部仓库</span>
+              <span class="m3-button__icon" aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </section>
 
-  <!-- 联系 -->
-  <section class="section" id="contact">
-    <div class="container contact-inner">
-      <h2 class="section-title reveal">联系我</h2>
-      <p class="section-sub reveal">星光为引，有缘相逢</p>
-      <div class="contact-links reveal">
-        <a class="contact-card glass" href="https://github.com/AttentionCoo" target="_blank" rel="noopener">
-          <span class="contact-icon">🐙</span>
-          <span class="contact-name">GitHub</span>
-          <span class="contact-detail">github.com/AttentionCoo</span>
-        </a>
-        <a class="contact-card glass" href="mailto:attentioncoo@example.com">
-          <span class="contact-icon">📧</span>
-          <span class="contact-name">邮箱</span>
-          <span class="contact-detail">attentioncoo@example.com</span>
-        </a>
-      </div>
-    </div>
-  </section>
+        <!-- 论文 -->
+        <section class="m3-section" id="publications">
+          <div class="m3-section__header">
+            <p class="m3-section__eyebrow" data-i18n="pubs.eyebrow">论文</p>
+            <h2 class="m3-section__title" data-i18n="pubs.title">论文</h2>
+            <p class="m3-section__subtitle" data-i18n="pubs.subtitle">在学术星空中留下的一颗星</p>
+          </div>
+          <div id="paper-card">
+            <!-- 由 JS 渲染 -->
+          </div>
+        </section>
 
-  <!-- 页脚 -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> AttentionCoo · 在星空中漫游 ✦ 由 GitHub Pages 驱动</p>
+        <!-- 联系 -->
+        <section class="m3-section" id="contact">
+          <div class="m3-section__header">
+            <p class="m3-section__eyebrow" data-i18n="contact.eyebrow">联系</p>
+            <h2 class="m3-section__title" data-i18n="contact.title">找到我</h2>
+            <p class="m3-section__subtitle" data-i18n="contact.subtitle">星光为引，有缘相逢</p>
+          </div>
+          <div class="contact__links">
+            <a class="contact__card spotlight" href="https://github.com/AttentionCoo" target="_blank" rel="noopener noreferrer">
+              <span class="contact__icon" aria-hidden="true">🐙</span>
+              <span class="contact__card-label">GitHub</span>
+              <span class="contact__card-desc" data-i18n="contact.github.desc">开源与代码</span>
+            </a>
+            <a class="contact__card spotlight" href="mailto:attentioncoo@example.com">
+              <span class="contact__icon" aria-hidden="true">📧</span>
+              <span class="contact__card-label" data-i18n="contact.email.label">邮箱</span>
+              <span class="contact__card-desc" data-i18n="contact.email.desc">给我发邮件</span>
+            </a>
+          </div>
+        </section>
+      </main>
+
+      <footer class="m3-footer">
+        <p>© <span id="year"></span> AttentionCoo · <span data-i18n="footer.line">在星空中漫游 ✦ 由 GitHub Pages 驱动</span></p>
+      </footer>
     </div>
-  </footer>
+  </div>
 
   <script src="js/main.js"></script>
 </body>
