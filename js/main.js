@@ -136,12 +136,6 @@ const data = {
     zh: ["多智能体系统", "大模型应用 · RAG", "多模态大模型", "临床决策支持"],
     en: ["Multi-Agent Systems", "LLM Apps · RAG", "Multimodal LLMs", "Clinical Decision Support"],
   },
-  stats: [
-    { num: "1", label: { zh: "CVPR 论文", en: "CVPR Paper" } },
-    { num: "2", label: { zh: "旗舰项目", en: "Flagship Projects" } },
-    { num: "19", label: { zh: "GitHub Stars", en: "GitHub Stars" } },
-    { num: "737", label: { zh: "次提交", en: "Commits" } },
-  ],
   skills: [
     { icon: "🤖", name: { zh: "多智能体系统 · LangGraph", en: "Multi-Agent · LangGraph" }, level: 92 },
     { icon: "🐍", name: { zh: "Python", en: "Python" }, level: 90 },
@@ -249,13 +243,16 @@ const i18n = {
     "activity.yearsLabel": "活跃年份",
     "activity.less": "少",
     "activity.more": "多",
-    "activity.note": "数据获取时间：2026-08-15。",
+    "activity.refresh": "刷新数据",
+    "stats.cvpr": "CVPR 论文",
+    "stats.flagship": "旗舰项目",
+    "stats.stars": "GitHub Stars",
+    "stats.commits": "次提交",
     "contact.eyebrow": "联系",
     "contact.title": "找到我",
     "contact.subtitle": "星光为引，有缘相逢",
     "contact.github.desc": "开源与代码",
     "contact.email.label": "邮箱",
-    "contact.email.desc": "给我发邮件",
     "footer.line": "在星空中漫游 ✦ 由 GitHub Pages 驱动",
   },
   en: {
@@ -301,13 +298,16 @@ const i18n = {
     "activity.yearsLabel": "Years active",
     "activity.less": "Less",
     "activity.more": "More",
-    "activity.note": "Data fetched on 2026-08-15.",
+    "activity.refresh": "Refresh Data",
+    "stats.cvpr": "CVPR Paper",
+    "stats.flagship": "Flagship Projects",
+    "stats.stars": "GitHub Stars",
+    "stats.commits": "Commits",
     "contact.eyebrow": "Contact",
     "contact.title": "Find Me",
     "contact.subtitle": "Guided by starlight",
     "contact.github.desc": "Open source & code",
     "contact.email.label": "Email",
-    "contact.email.desc": "Send me an email",
     "footer.line": "Roaming among the stars ✦ Powered by GitHub Pages",
   },
 };
@@ -327,11 +327,18 @@ function renderChips() {
 }
 
 function renderStats() {
+  const snap = window.ACTIVITY_SNAPSHOT;
+  const items = [
+    { num: "1", key: "stats.cvpr" },
+    { num: "2", key: "stats.flagship" },
+    { num: snap ? snap.totalStars : 19, key: "stats.stars" },
+    { num: snap ? snap.totalCommits : 737, key: "stats.commits" },
+  ];
   const box = document.getElementById("about-stats");
-  box.innerHTML = data.stats
+  box.innerHTML = items
     .map(
       (s) =>
-        `<div class="stat m3-card"><span class="stat__num">${s.num}</span><span class="stat__label">${s.label[currentLang]}</span></div>`
+        `<div class="stat m3-card"><span class="stat__num">${String(s.num).toLocaleString()}</span><span class="stat__label">${t(s.key)}</span></div>`
     )
     .join("");
 }
@@ -463,6 +470,14 @@ function renderActivity() {
       ? `累计 <strong>${s.totalCommits.toLocaleString()}</strong> 次提交`
       : `<strong>${s.totalCommits.toLocaleString()}</strong> commits in total`;
 
+  const fetched = (s.fetchedAt || "?")
+    .replace("T", " ")
+    .replace("Z", " UTC");
+  const noteText =
+    (currentLang === "zh"
+      ? "数据每日自动更新（北京时间 00:00）· 最近更新："
+      : "Data refreshes daily at 00:00 CST · Last updated: ") + fetched;
+
   box.innerHTML = `
     <div class="activity__stats">
       ${["totalStars", "publicRepos", "followers", "totalCommits"]
@@ -504,7 +519,13 @@ function renderActivity() {
         </div>
       </div>
     </div>
-    <p class="activity__note">${t("activity.note")}</p>
+    <p class="activity__note">${noteText}</p>
+    <div class="activity__actions">
+      <a class="m3-button m3-button--text" href="https://github.com/AttentionCoo/AttentionCoo.github.io/actions/workflows/refresh-activity.yml" target="_blank" rel="noopener noreferrer">
+        <span class="m3-button__label">${t("activity.refresh")}</span>
+        <span class="m3-button__icon" aria-hidden="true">↗</span>
+      </a>
+    </div>
   `;
 }
 

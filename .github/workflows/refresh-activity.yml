@@ -1,0 +1,37 @@
+name: Refresh Activity Snapshot
+
+on:
+  schedule:
+    # UTC 16:00 = 北京时间 00:00，每天自动刷新一次
+    - cron: '0 16 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch latest GitHub activity data
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/refresh_activity.py
+
+      - name: Commit updated snapshot if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add js/activity-data.js
+          if git diff --cached --quiet; then
+            echo "No changes — snapshot is up to date."
+          else
+            git commit -m "chore: refresh GitHub activity snapshot"
+            git push
+          fi

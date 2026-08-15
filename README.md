@@ -9,7 +9,8 @@
 - 🎨 Material Design 3 设计令牌：字阶、间距、形状、阴影、动效全部走 CSS 变量
 - 🖱️ 光标聚光灯：鼠标划过个人卡片时浮现光晕
 - 🌐 中英双语切换（记忆偏好，首帧不闪烁）
-- 📊 GitHub 活动图：统计卡片 + 自绘贡献日历热力图（真实数据快照，紫青配色）
+- 📊 GitHub 活动图：统计卡片 + 自绘贡献日历热力图（真实数据，紫青配色）
+- 🔄 数据自动刷新：GitHub Actions 每天北京时间 00:00 更新一次快照，也可手动触发
 - 📜 CVPR 2026 Findings 论文卡片（VisMet-Bench）+ 两个得意项目
 - 📱 完全响应式，支持 `prefers-reduced-motion`
 - ⚡ 零依赖，加载速度快
@@ -40,6 +41,16 @@ git push -u origin master
 
 3. 几分钟后访问 **https://attentioncoo.github.io** 即可看到页面。
 
+## 🔄 刷新活动数据
+
+「动态」区块的数据来自 `js/activity-data.js` 快照，由 GitHub Actions 自动维护：
+
+- **自动**：`.github/workflows/refresh-activity.yml` 每天北京时间 00:00 运行，拉取最新的 Star / 仓库 / 关注者 / 提交日历并提交回仓库（无需任何配置，用的是仓库自带的 `GITHUB_TOKEN`）
+- **手动**：页面上点「刷新数据」按钮，或到仓库 **Actions → Refresh Activity Snapshot → Run workflow** 手动触发
+- **本地**：`HTTPS_PROXY=<代理> GH_TOKEN=<token> python scripts/refresh_activity.py`
+
+> 提示：修改 `css/style.css` 或 `js/main.js` 后，记得把 `index.html` 里的 `?v=3` 版本号加一，强制浏览器刷新缓存。
+
 ## ✏️ 自定义
 
 | 想改什么           | 去哪里改                              |
@@ -49,7 +60,7 @@ git push -u origin master
 | 技能列表           | `js/main.js` 的 `data.skills`          |
 | 项目卡片           | `js/main.js` 的 `data.projects`        |
 | 论文信息           | `js/main.js` 的 `data.paper`           |
-| GitHub 活动图数据   | `js/activity-data.js`（GitHub API 快照，可用脚本重新生成） |
+| GitHub 活动图数据   | 由 `scripts/refresh_activity.py` + Actions 自动生成，勿手改 |
 | 联系方式           | `index.html` 的「联系」区块             |
 | 配色 / 星空 / 极光 | `css/style.css` 顶部的 MD3 色彩令牌与 `.blob` 样式 |
 
