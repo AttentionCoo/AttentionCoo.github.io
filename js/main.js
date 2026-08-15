@@ -123,11 +123,28 @@
 })();
 
 // ============ 图标（内联 SVG） ============
+const ICON_STROKE =
+  'fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"';
+
 const ICONS = {
   star: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>',
   fork: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/></svg>',
   external:
     '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.75 2h3.5a.75.75 0 0 1 0 1.5h-3.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h8.5a.25.25 0 0 0 .25-.25v-3.5a.75.75 0 0 1 1.5 0v3.5A1.75 1.75 0 0 1 12.25 14h-8.5A1.75 1.75 0 0 1 2 12.25v-8.5C2 2.784 2.784 2 3.75 2Zm6.854-1h4.146a.25.25 0 0 1 .25.25v4.146a.25.25 0 0 1-.427.177L13.03 4.03 9.28 7.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.75-3.75-1.543-1.543A.25.25 0 0 1 10.604 1Z"/></svg>',
+  // 联系图标
+  github: '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>',
+  mail: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>`,
+  chat: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>`,
+  award: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>`,
+  // 技能图标
+  network: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/></svg>`,
+  code: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+  cpu: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/></svg>`,
+  message: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+  image: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>`,
+  flame: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`,
+  globe: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`,
+  branch: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>`,
 };
 
 // ============ 数据 ============
@@ -137,14 +154,14 @@ const data = {
     en: ["Multi-Agent Systems", "LLM Apps · RAG", "Multimodal LLMs", "Clinical Decision Support"],
   },
   skills: [
-    { icon: "🤖", name: { zh: "多智能体系统 · LangGraph", en: "Multi-Agent · LangGraph" }, level: 92 },
-    { icon: "🐍", name: { zh: "Python", en: "Python" }, level: 90 },
-    { icon: "🧠", name: { zh: "大模型应用 · RAG", en: "LLM Apps · RAG" }, level: 88 },
-    { icon: "💬", name: { zh: "Prompt Engineering", en: "Prompt Engineering" }, level: 85 },
-    { icon: "🖼️", name: { zh: "多模态大模型 (MLLM)", en: "Multimodal LLMs (MLLM)" }, level: 84 },
-    { icon: "🔥", name: { zh: "PyTorch · 深度学习", en: "PyTorch · Deep Learning" }, level: 80 },
-    { icon: "🌐", name: { zh: "Web 全栈 · FastAPI / SSE", en: "Full-Stack Web · FastAPI / SSE" }, level: 78 },
-    { icon: "🐙", name: { zh: "Git · 协作开发", en: "Git · Collaboration" }, level: 88 },
+    { icon: "network", name: { zh: "多智能体系统 · LangGraph", en: "Multi-Agent · LangGraph" }, level: 92 },
+    { icon: "code", name: { zh: "Python", en: "Python" }, level: 90 },
+    { icon: "cpu", name: { zh: "大模型应用 · RAG", en: "LLM Apps · RAG" }, level: 88 },
+    { icon: "message", name: { zh: "Prompt Engineering", en: "Prompt Engineering" }, level: 85 },
+    { icon: "image", name: { zh: "多模态大模型 (MLLM)", en: "Multimodal LLMs (MLLM)" }, level: 84 },
+    { icon: "flame", name: { zh: "PyTorch · 深度学习", en: "PyTorch · Deep Learning" }, level: 80 },
+    { icon: "globe", name: { zh: "Web 全栈 · FastAPI / SSE", en: "Full-Stack Web · FastAPI / SSE" }, level: 78 },
+    { icon: "branch", name: { zh: "Git · 协作开发", en: "Git · Collaboration" }, level: 88 },
   ],
   projects: [
     {
@@ -179,9 +196,25 @@ const data = {
         en: ["LLM", "Multi-Agent", "RAG", "Software Cup"],
       },
     },
+    {
+      name: "Titanic-FT-Transformer",
+      repo: "https://github.com/AttentionCoo/Titanic-FT-Transformer",
+      homepage: null,
+      language: "Python",
+      stars: 1,
+      forks: 0,
+      desc: {
+        zh: "使用强正则化的 FT-Transformer 解决 Kaggle Titanic 二分类问题：Title / FamilySize 特征工程、DropPath、特征残差连接与 5-Fold 交叉验证，极致压榨小数据集性能。",
+        en: "Solving the Kaggle Titanic binary classification with a heavily regularized FT-Transformer: Title / FamilySize feature engineering, DropPath, feature residual connections and 5-fold cross-validation to squeeze a small dataset to the limit.",
+      },
+      tags: {
+        zh: ["PyTorch", "FT-Transformer", "表格深度学习", "Kaggle"],
+        en: ["PyTorch", "FT-Transformer", "Tabular DL", "Kaggle"],
+      },
+    },
   ],
   paper: {
-    badge: "🏆 CVPR 2026 Findings",
+    badge: "CVPR 2026 Findings",
     pages: "pp. 2304–2313",
     title: "Seeing the Abstract: A Benchmark for Visual-Only Metaphor Understanding in Multimodal Large Language Models",
     authors:
@@ -208,7 +241,7 @@ const i18n = {
     "nav.contact": "联系",
     "hero.role": "AI 开发者 · 多智能体 / 大模型研究",
     "hero.tagline": "仰望星空，脚踏实地 ✦",
-    "hero.bio": "构建多智能体系统，探索多模态大模型的边界 —— 两个得意项目，一篇 CVPR 论文。欢迎来到我的小站。",
+    "hero.bio": "构建多智能体系统，探索多模态大模型的边界 —— 欢迎来到我的小站。",
     "hero.ctaProjects": "查看项目",
     "about.eyebrow": "关于",
     "about.title": "关于我",
@@ -220,7 +253,7 @@ const i18n = {
     "skills.subtitle": "我的技术星座",
     "projects.eyebrow": "项目",
     "projects.title": "得意之作",
-    "projects.subtitle": "两个让我骄傲的项目 —— Star 与 Fork 为 GitHub 公开数据快照",
+    "projects.subtitle": "我骄傲的项目 —— Star 与 Fork 为 GitHub 公开数据快照",
     "projects.featuredTitle": "精选项目",
     "projects.repo": "仓库",
     "projects.homepage": "在线预览",
@@ -263,7 +296,7 @@ const i18n = {
     "nav.contact": "Contact",
     "hero.role": "AI Developer · Multi-Agent / LLM Research",
     "hero.tagline": "Reach for the stars, keep feet on the ground ✦",
-    "hero.bio": "Building multi-agent systems and exploring the frontiers of multimodal LLMs — two proud projects, one CVPR paper. Welcome to my little corner of the universe.",
+    "hero.bio": "Building multi-agent systems and exploring the frontiers of multimodal LLMs. Welcome to my little corner of the universe.",
     "hero.ctaProjects": "View Projects",
     "about.eyebrow": "About",
     "about.title": "About Me",
@@ -275,7 +308,7 @@ const i18n = {
     "skills.subtitle": "My technical constellation",
     "projects.eyebrow": "Projects",
     "projects.title": "Proud Works",
-    "projects.subtitle": "Two projects I'm proud of — stars and forks are snapshots of public GitHub data",
+    "projects.subtitle": "Projects I'm proud of — stars and forks are snapshots of public GitHub data",
     "projects.featuredTitle": "Featured Projects",
     "projects.repo": "Repository",
     "projects.homepage": "Live Demo",
@@ -330,7 +363,7 @@ function renderStats() {
   const snap = window.ACTIVITY_SNAPSHOT;
   const items = [
     { num: "1", key: "stats.cvpr" },
-    { num: "2", key: "stats.flagship" },
+    { num: "3", key: "stats.flagship" },
     { num: snap ? snap.totalStars : 19, key: "stats.stars" },
     { num: snap ? snap.totalCommits : 737, key: "stats.commits" },
   ];
@@ -349,7 +382,7 @@ function renderSkills() {
     .map(
       (s) => `
       <div class="skill-card m3-card">
-        <div class="skill-icon">${s.icon}</div>
+        <div class="skill-icon">${ICONS[s.icon] || ""}</div>
         <div class="skill-name">${s.name[currentLang]}</div>
         <div class="skill-bar"><div class="skill-fill" data-level="${s.level}"></div></div>
       </div>`
@@ -409,7 +442,7 @@ function renderPaper() {
   box.innerHTML = `
     <article class="paper-card m3-card">
       <div class="paper-card__badges">
-        <span class="m3-chip m3-chip--gold">${p.badge}</span>
+        <span class="m3-chip m3-chip--gold">${ICONS.award}${p.badge}</span>
         <span class="m3-chip">${p.pages}</span>
       </div>
       <a class="paper-card__title" href="${p.page}" target="_blank" rel="noopener noreferrer">${p.title}</a>
