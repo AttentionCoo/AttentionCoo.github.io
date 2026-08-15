@@ -39,6 +39,7 @@
         <a class="appbar__link" href="#skills" data-i18n="nav.skills">技能</a>
         <a class="appbar__link" href="#projects" data-i18n="nav.projects">项目</a>
         <a class="appbar__link" href="#publications" data-i18n="nav.publications">论文</a>
+        <a class="appbar__link" href="#activity" data-i18n="nav.activity">动态</a>
         <a class="appbar__link" href="#contact" data-i18n="nav.contact">联系</a>
       </nav>
       <div class="appbar__actions">
@@ -138,6 +139,18 @@
           </div>
         </section>
 
+        <!-- 动态 -->
+        <section class="m3-section" id="activity">
+          <div class="m3-section__header">
+            <p class="m3-section__eyebrow" data-i18n="activity.eyebrow">动态</p>
+            <h2 class="m3-section__title" data-i18n="activity.title">GitHub 活跃情况</h2>
+            <p class="m3-section__subtitle" data-i18n="activity.subtitle">公开贡献统计与提交日历，来源于 GitHub API</p>
+          </div>
+          <div id="activity-box">
+            <!-- 由 JS 渲染 -->
+          </div>
+        </section>
+
         <!-- 联系 -->
         <section class="m3-section" id="contact">
           <div class="m3-section__header">
@@ -166,6 +179,7 @@
     </div>
   </div>
 
+  <script src="js/activity-data.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

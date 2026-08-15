@@ -139,8 +139,8 @@ const data = {
   stats: [
     { num: "1", label: { zh: "CVPR 论文", en: "CVPR Paper" } },
     { num: "2", label: { zh: "旗舰项目", en: "Flagship Projects" } },
-    { num: "12", label: { zh: "GitHub Stars", en: "GitHub Stars" } },
-    { num: "999", label: { zh: "杯咖啡 ☕", en: "Cups of Coffee ☕" } },
+    { num: "19", label: { zh: "GitHub Stars", en: "GitHub Stars" } },
+    { num: "737", label: { zh: "次提交", en: "Commits" } },
   ],
   skills: [
     { icon: "🤖", name: { zh: "多智能体系统 · LangGraph", en: "Multi-Agent · LangGraph" }, level: 92 },
@@ -238,6 +238,18 @@ const i18n = {
     "pubs.subtitle": "在学术星空中留下的一颗星",
     "pubs.page": "论文主页",
     "pubs.pdf": "PDF 全文",
+    "nav.activity": "动态",
+    "activity.eyebrow": "动态",
+    "activity.title": "GitHub 活跃情况",
+    "activity.subtitle": "公开贡献统计与提交日历，来源于 GitHub API",
+    "activity.stats.totalStars": "Star 总数",
+    "activity.stats.publicRepos": "公开仓库",
+    "activity.stats.followers": "关注者",
+    "activity.stats.totalCommits": "提交贡献",
+    "activity.yearsLabel": "活跃年份",
+    "activity.less": "少",
+    "activity.more": "多",
+    "activity.note": "数据获取时间：2026-08-15。",
     "contact.eyebrow": "联系",
     "contact.title": "找到我",
     "contact.subtitle": "星光为引，有缘相逢",
@@ -278,6 +290,18 @@ const i18n = {
     "pubs.subtitle": "A star in the academic sky",
     "pubs.page": "Paper Page",
     "pubs.pdf": "PDF",
+    "nav.activity": "Activity",
+    "activity.eyebrow": "Activity",
+    "activity.title": "GitHub Activity",
+    "activity.subtitle": "Public contribution stats and commit calendar, from the GitHub API",
+    "activity.stats.totalStars": "Total Stars",
+    "activity.stats.publicRepos": "Public Repos",
+    "activity.stats.followers": "Followers",
+    "activity.stats.totalCommits": "Total Commits",
+    "activity.yearsLabel": "Years active",
+    "activity.less": "Less",
+    "activity.more": "More",
+    "activity.note": "Data fetched on 2026-08-15.",
     "contact.eyebrow": "Contact",
     "contact.title": "Find Me",
     "contact.subtitle": "Guided by starlight",
@@ -394,6 +418,96 @@ function renderPaper() {
     </article>`;
 }
 
+function renderActivity() {
+  const box = document.getElementById("activity-box");
+  const s = window.ACTIVITY_SNAPSHOT;
+  if (!s || !s.calendar) return;
+  const weeks = s.calendar;
+  const start = new Date(s.firstDay + "T00:00:00Z");
+  const dayLabels = currentLang === "zh" ? ["一", "三", "五"] : ["Mon", "Wed", "Fri"];
+  const monthNamesEn = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const level = (n) => (n === 0 ? 0 : n <= 3 ? 1 : n <= 8 ? 2 : n <= 15 ? 3 : 4);
+
+  const monthsHtml = [];
+  const weeksHtml = [];
+  let prevMonth = -1;
+  weeks.forEach((week, w) => {
+    const wd = new Date(start.getTime() + w * 7 * 86400000);
+    const m = wd.getUTCMonth();
+    const label =
+      m !== prevMonth ? (currentLang === "zh" ? m + 1 + "月" : monthNamesEn[m]) : "";
+    prevMonth = m;
+    monthsHtml.push(
+      `<span class="gh-month">${label ? "<span>" + label + "</span>" : ""}</span>`
+    );
+    weeksHtml.push(
+      `<div class="gh-week">${week
+        .map((n, d) => {
+          const iso = new Date(start.getTime() + (w * 7 + d) * 86400000)
+            .toISOString()
+            .slice(0, 10);
+          const tip = currentLang === "zh" ? `${iso} · ${n} 次提交` : `${iso} · ${n} commits`;
+          return `<span class="gh-cell gh-cell--l${level(n)}" title="${tip}"></span>`;
+        })
+        .join("")}</div>`
+    );
+  });
+
+  const years = [];
+  const y0 = start.getUTCFullYear();
+  const y1 = new Date(start.getTime() + (weeks.length * 7 - 1) * 86400000).getUTCFullYear();
+  for (let y = y0; y <= y1; y++) years.push(y);
+
+  const totalText =
+    currentLang === "zh"
+      ? `累计 <strong>${s.totalCommits.toLocaleString()}</strong> 次提交`
+      : `<strong>${s.totalCommits.toLocaleString()}</strong> commits in total`;
+
+  box.innerHTML = `
+    <div class="activity__stats">
+      ${["totalStars", "publicRepos", "followers", "totalCommits"]
+        .map(
+          (k) => `
+        <div class="activity__stat">
+          <span class="activity__stat-value">${s[k].toLocaleString()}</span>
+          <span class="activity__stat-label">${t("activity.stats." + k)}</span>
+        </div>`
+        )
+        .join("")}
+    </div>
+    <div class="activity__years">
+      <span class="activity__years-label">${t("activity.yearsLabel")}</span>
+      <div class="activity__year-chips">${years
+        .map((y) => `<span class="m3-chip">${y}</span>`)
+        .join("")}</div>
+    </div>
+    <div class="activity__graph">
+      <div class="gh-head">
+        <span class="gh-total">${totalText}</span>
+        <span class="gh-legend">
+          <span>${t("activity.less")}</span>
+          <span class="gh-cell gh-cell--l0"></span>
+          <span class="gh-cell gh-cell--l1"></span>
+          <span class="gh-cell gh-cell--l2"></span>
+          <span class="gh-cell gh-cell--l3"></span>
+          <span class="gh-cell gh-cell--l4"></span>
+          <span>${t("activity.more")}</span>
+        </span>
+      </div>
+      <div class="gh-scroll">
+        <div class="gh-body">
+          <div class="gh-days">${dayLabels.map((d) => `<span>${d}</span>`).join("")}</div>
+          <div class="gh-calendar">
+            <div class="gh-months">${monthsHtml.join("")}</div>
+            <div class="gh-weeks">${weeksHtml.join("")}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="activity__note">${t("activity.note")}</p>
+  `;
+}
+
 function renderAll() {
   // 静态文案
   document.querySelectorAll("[data-i18n]").forEach((el) => {
@@ -405,6 +519,7 @@ function renderAll() {
   renderSkills();
   renderProjects();
   renderPaper();
+  renderActivity();
   // 语言按钮状态
   document.querySelectorAll(".lang-btn").forEach((btn) => {
     btn.classList.toggle("active", btn.dataset.lang === currentLang);

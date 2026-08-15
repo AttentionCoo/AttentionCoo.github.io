@@ -9,6 +9,7 @@
 - 🎨 Material Design 3 设计令牌：字阶、间距、形状、阴影、动效全部走 CSS 变量
 - 🖱️ 光标聚光灯：鼠标划过个人卡片时浮现光晕
 - 🌐 中英双语切换（记忆偏好，首帧不闪烁）
+- 📊 GitHub 活动图：统计卡片 + 自绘贡献日历热力图（真实数据快照，紫青配色）
 - 📜 CVPR 2026 Findings 论文卡片（VisMet-Bench）+ 两个得意项目
 - 📱 完全响应式，支持 `prefers-reduced-motion`
 - ⚡ 零依赖，加载速度快
@@ -48,6 +49,7 @@ git push -u origin master
 | 技能列表           | `js/main.js` 的 `data.skills`          |
 | 项目卡片           | `js/main.js` 的 `data.projects`        |
 | 论文信息           | `js/main.js` 的 `data.paper`           |
+| GitHub 活动图数据   | `js/activity-data.js`（GitHub API 快照，可用脚本重新生成） |
 | 联系方式           | `index.html` 的「联系」区块             |
 | 配色 / 星空 / 极光 | `css/style.css` 顶部的 MD3 色彩令牌与 `.blob` 样式 |
 
@@ -59,7 +61,8 @@ git push -u origin master
 ├── css/
 │   └── style.css   # MD3 设计令牌 + 全部样式
 ├── js/
-│   └── main.js     # 数据、i18n、星空引擎与交互
+│   ├── main.js          # 数据、i18n、星空引擎与交互
+│   └── activity-data.js # GitHub 活动图数据快照
 ├── img/
 │   └── avatar.jpg  # GitHub 头像（本地托管）
 └── README.md
