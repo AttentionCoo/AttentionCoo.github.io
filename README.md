@@ -28,12 +28,12 @@ python -m http.server 8000
 git init
 git add .
 git commit -m "init: personal homepage"
-git branch -M main
+git branch -M master
 git remote add origin https://github.com/AttentionCoo/AttentionCoo.github.io.git
-git push -u origin main
+git push -u origin master
 ```
 
-2. 在仓库 **Settings → Pages** 中，将 Source 设为 `Deploy from a branch`，分支选择 `main`（根目录 `/`），保存。
+2. 在仓库 **Settings → Pages** 中，将 Source 设为 `Deploy from a branch`，分支选择 `master`（根目录 `/`），保存。
 
 3. 几分钟后访问 **https://attentioncoo.github.io** 即可看到页面。
 
