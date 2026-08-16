@@ -173,12 +173,12 @@ const data = {
       stars: 8,
       forks: 1,
       desc: {
-        zh: "多智能体深度检索脑卒中临床辅助决策支持系统 (CDSS)：以本地医学文献与临床指南为知识底座，融合 Hybrid RAG 混合检索与 LangGraph 多智能体协同推理，配合结构化绿道预评估、医生复核审计与 SSE 流式会诊，践行「证据先行 · 过程透明 · 结果合规 · 时效硬管控」。",
-        en: "A multi-agent, deep-retrieval clinical decision support system (CDSS) for stroke care: built on a knowledge base of local medical literature and clinical guidelines, combining Hybrid RAG retrieval with LangGraph multi-agent reasoning, structured green-channel triage, physician review & audit, and SSE streaming consultation — evidence-first, transparent, compliant and time-controlled.",
+        zh: "多智能体深度检索脑卒中临床辅助决策系统 (CDSS)：以本地医学文献与临床指南为知识底座，Hybrid RAG 双路检索（语义 + BM25）配合证据级溯源。全科、神经专科、临床药师三位专家交叉质询形成可审计共识，内置 NIHSS、rt-PA 剂量等 8 个卒中领域工具与结构化绿道预评估，全链路 SSE 实时呈现思考链 —— 证据先行、过程透明、结果合规。",
+        en: "A multi-agent, deep-retrieval clinical decision support system (CDSS) for stroke care: built on a local knowledge base of medical literature and clinical guidelines, with dual-path Hybrid RAG (semantic + BM25) and evidence-level citation tracing. General, neurological and pharmacist experts cross-examine each other into an auditable consensus, backed by 8 stroke-specific tools (NIHSS, rt-PA dosing, …), structured green-channel triage and full-chain SSE streaming of the reasoning process.",
       },
       tags: {
-        zh: ["LangGraph", "Hybrid RAG", "多智能体会诊", "SSE 流式"],
-        en: ["LangGraph", "Hybrid RAG", "Multi-Agent", "SSE Streaming"],
+        zh: ["LangGraph", "Hybrid RAG", "三专家会诊", "SSE 思考链"],
+        en: ["LangGraph", "Hybrid RAG", "Expert Panel", "SSE Streaming"],
       },
     },
     {
@@ -189,12 +189,12 @@ const data = {
       stars: 4,
       forks: 0,
       desc: {
-        zh: "「中国软件杯」A3 赛题参赛作品 LearnAgent：面向脑卒中医学教育的多智能体个性化学习系统 —— 9 位专家智能体协同，覆盖 8 维学习画像、8 类资源生成、路径规划、循证辅导、五维评估、Qwen-VL 医学影像分析与代码辅助，全流程 SSE 可审计。",
-        en: "LearnAgent, our 'China Software Cup' track A3 entry: a multi-agent personalized learning system for stroke medical education — nine expert agents covering 8-dimension learner profiling, 8-type resource generation, path planning, evidence-based tutoring, 5-dimension assessment, Qwen-VL medical imaging analysis and code assistance, all auditable through SSE streaming.",
+        zh: "「中国软件杯」A3 赛题参赛作品 LearnAgent：面向脑卒中医学教育的多智能体个性化学习系统 —— 9 位专家智能体 + Planner 结构化规划（RePlan 循环）+ 监督者工具调度试点，覆盖 8 维学习画像、8 类资源生成、循证辅导、五维评估、Qwen-VL 影像分析与代码辅助，全流程 SSE 可审计（195 项自动化测试通过）。",
+        en: "LearnAgent, our 'China Software Cup' track A3 entry: a multi-agent personalized learning system for stroke medical education — nine expert agents with Planner-structured execution (RePlan loop) and a supervised tool-dispatch pilot, covering 8-dimension profiling, 8-type resource generation, evidence-based tutoring, 5-dimension assessment, Qwen-VL imaging analysis and code assistance, all auditable via SSE (195 automated tests passing).",
       },
       tags: {
-        zh: ["Vue 3", "Spring Boot", "LangGraph", "9 位专家智能体"],
-        en: ["Vue 3", "Spring Boot", "LangGraph", "9 Expert Agents"],
+        zh: ["Vue 3", "Spring Boot", "Planner / RePlan", "9 位专家智能体"],
+        en: ["Vue 3", "Spring Boot", "Planner / RePlan", "9 Expert Agents"],
       },
     },
     {
@@ -205,8 +205,8 @@ const data = {
       stars: 1,
       forks: 0,
       desc: {
-        zh: "Kaggle Titanic 生还预测：用 FT-Transformer（Feature Tokenizer + Transformer）攻克表格数据二分类 —— Title / FamilySize / Deck 特征工程、CLS Token 与特征残差连接、DropPath 强正则化，5-Fold 交叉验证准确率 84.51% ± 1.24%，五折集成推理可直接提交。",
-        en: "Kaggle Titanic survival prediction with FT-Transformer (Feature Tokenizer + Transformer) for tabular binary classification: Title / FamilySize / Deck feature engineering, CLS token with feature residual connections, DropPath regularization — 84.51% ± 1.24% 5-fold CV accuracy, with 5-fold ensembled inference ready for submission.",
+        zh: "Kaggle Titanic 生还预测：用 FT-Transformer（Feature Tokenizer + Transformer）攻克表格数据二分类 —— Title / FamilySize / IsAlone / Deck 特征工程、分层缺失值填充、CLS Token 与特征残差连接、DropPath 强正则化，5-Fold 交叉验证准确率 84.51% ± 1.24%，五折集成推理可直接提交 Kaggle。",
+        en: "Kaggle Titanic survival prediction with FT-Transformer (Feature Tokenizer + Transformer) for tabular binary classification: Title / FamilySize / IsAlone / Deck feature engineering, stratified imputation, CLS token with feature residual connections and DropPath regularization — 84.51% ± 1.24% 5-fold CV accuracy, with 5-fold ensembled inference ready for Kaggle submission.",
       },
       tags: {
         zh: ["PyTorch", "FT-Transformer", "5-Fold CV 84.5%", "Kaggle"],
