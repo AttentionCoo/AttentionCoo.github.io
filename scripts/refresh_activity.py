@@ -16,6 +16,8 @@ import urllib.request
 from datetime import datetime, timezone
 
 USER = "AttentionCoo"
+# 主页展示的项目，星标与 Fork 数随快照一起更新
+PROJECT_REPOS = ["stroke-multi-agent-cdss", "learning-characterizing-mas", "Titanic-FT-Transformer"]
 OUT = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "js", "activity-data.js"))
 PROXY = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy")
 TOKEN = os.environ.get("GH_TOKEN", "")
@@ -62,6 +64,20 @@ def main():
     own = [r for r in repos if not r.get("fork")]
     stars = sum(r.get("stargazers_count", 0) for r in own)
 
+    # REST: per-project stars / forks for the featured projects
+    project_stats = {}
+    for name in PROJECT_REPOS:
+        try:
+            st, body = call(op, f"https://api.github.com/repos/{USER}/{name}")
+            if st == 200:
+                d = json.loads(body)
+                project_stats[name] = {
+                    "stars": d.get("stargazers_count", 0),
+                    "forks": d.get("forks_count", 0),
+                }
+        except Exception as exc:  # 单个项目失败不阻塞整体刷新
+            print(f"warn: fetch {name} failed: {exc}", file=sys.stderr)
+
     # GraphQL: contribution calendar
     gql = {
         "query": """
@@ -99,6 +115,7 @@ def main():
         "publicRepos": user.get("public_repos", 0),
         "followers": user.get("followers", 0),
         "totalCommits": cal["totalContributions"],
+        "projects": project_stats,
         "calendar": [[d["contributionCount"] for d in w["contributionDays"]] for w in cal["weeks"]],
         "firstDay": cal["weeks"][0]["contributionDays"][0]["date"],
         "fetchedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),

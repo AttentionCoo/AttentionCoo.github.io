@@ -41,22 +41,22 @@ git push -u origin master
 
 3. 几分钟后访问 **https://attentioncoo.github.io** 即可看到页面。
 
-## 🔄 刷新活动数据
+## 🔄 数据更新机制
 
-「动态」区块的数据来自 `js/activity-data.js` 快照，由 GitHub Actions 自动维护：
+页面上的 GitHub 数据有三层来源，全部自动保持新鲜：
 
-- **自动**：`.github/workflows/refresh-activity.yml` 每天北京时间 00:00 运行，拉取最新的 Star / 仓库 / 关注者 / 提交日历并提交回仓库（无需任何配置，用的是仓库自带的 `GITHUB_TOKEN`）
-- **手动**：页面上点「刷新数据」按钮，或到仓库 **Actions → Refresh Activity Snapshot → Run workflow** 手动触发
-- **本地**：`HTTPS_PROXY=<代理> GH_TOKEN=<token> python scripts/refresh_activity.py`
+1. **实时拉取（打开页面即生效）**：浏览器直接调用 GitHub REST API，实时获取三个项目的 Star/Fork、账号的仓库数、关注者与 Star 总数。点击「动态」区的 **「刷新数据」** 按钮可随时手动重拉。网络不可用时静默回退到快照数据。
+2. **每日快照（GitHub Actions）**：`.github/workflows/refresh-activity.yml` 每天北京时间 00:00 运行，拉取完整数据（含需要认证 GraphQL 的**提交日历**与提交总数）并提交回仓库，无需任何配置。「完整更新」按钮直达 Actions 手动触发页。
+3. **本地脚本**：`HTTPS_PROXY=<代理> GH_TOKEN=<token> python scripts/refresh_activity.py`
 
-> 提示：修改 `css/style.css` 或 `js/main.js` 后，记得把 `index.html` 里的 `?v=3` 版本号加一，强制浏览器刷新缓存。
+> 提示：修改 `css/style.css` 或 `js/main.js` 后，记得把 `index.html` 里的 `?v=7` 版本号加一，强制浏览器刷新缓存。
 
 ## ✏️ 自定义
 
 | 想改什么           | 去哪里改                              |
 | ------------------ | ------------------------------------- |
 | 名字 / 简介        | `index.html`（data-i18n 文案）+ `js/main.js` 的 `i18n` 字典 |
-| 关注方向 / 统计数字 | `js/main.js` 的 `data.focus` / `data.stats` |
+| 关注方向           | `js/main.js` 的 `data.focus`（统计数字自动取自实时数据与快照） |
 | 技能列表           | `js/main.js` 的 `data.skills`          |
 | 项目卡片           | `js/main.js` 的 `data.projects`        |
 | 论文信息           | `js/main.js` 的 `data.paper`           |

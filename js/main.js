@@ -145,6 +145,7 @@ const ICONS = {
   flame: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`,
   globe: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`,
   branch: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>`,
+  refresh: `<svg viewBox="0 0 24 24" ${ICON_STROKE} aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>`,
 };
 
 // ============ 数据 ============
@@ -277,6 +278,9 @@ const i18n = {
     "activity.less": "少",
     "activity.more": "多",
     "activity.refresh": "刷新数据",
+    "activity.refreshing": "刷新中…",
+    "activity.updated": "已更新",
+    "activity.fullRefresh": "完整更新（GitHub Actions）",
     "stats.cvpr": "CVPR 论文",
     "stats.flagship": "旗舰项目",
     "stats.stars": "GitHub Stars",
@@ -332,6 +336,9 @@ const i18n = {
     "activity.less": "Less",
     "activity.more": "More",
     "activity.refresh": "Refresh Data",
+    "activity.refreshing": "Refreshing…",
+    "activity.updated": "Updated",
+    "activity.fullRefresh": "Full refresh (GitHub Actions)",
     "stats.cvpr": "CVPR Paper",
     "stats.flagship": "Flagship Projects",
     "stats.stars": "GitHub Stars",
@@ -351,6 +358,106 @@ function t(key) {
   return i18n[currentLang][key] ?? key;
 }
 
+// ============ 实时数据（打开页面时从 GitHub API 拉取最新值） ============
+const liveData = {
+  repos: {}, // repo 名 -> { stars, forks }
+  followers: null,
+  publicRepos: null,
+  totalStars: null,
+};
+
+function snap() {
+  return window.ACTIVITY_SNAPSHOT || {};
+}
+
+function projStars(p) {
+  if (liveData.repos[p.name]) return liveData.repos[p.name].stars;
+  const s = snap();
+  if (s.projects && s.projects[p.name]) return s.projects[p.name].stars;
+  return p.stars;
+}
+
+function projForks(p) {
+  if (liveData.repos[p.name]) return liveData.repos[p.name].forks;
+  const s = snap();
+  if (s.projects && s.projects[p.name]) return s.projects[p.name].forks;
+  return p.forks;
+}
+
+function statTotalStars() {
+  return liveData.totalStars ?? snap().totalStars ?? 19;
+}
+
+function statPublicRepos() {
+  return liveData.publicRepos ?? snap().publicRepos ?? 0;
+}
+
+function statFollowers() {
+  return liveData.followers ?? snap().followers ?? 0;
+}
+
+function statCommits() {
+  return snap().totalCommits ?? 0;
+}
+
+async function fetchJson(url, timeoutMs = 6000) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
+  try {
+    const res = await fetch(url, {
+      signal: ctrl.signal,
+      headers: { Accept: "application/vnd.github+json" },
+    });
+    if (!res.ok) throw new Error(String(res.status));
+    return await res.json();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// 拉取三个展示项目的 Star/Fork、账号关注者/仓库数/总 Star。
+// 提交数与贡献日历需要认证 GraphQL，无法在浏览器实时获取，仍依赖每日快照。
+async function refreshLiveData() {
+  const names = data.projects.map((p) => p.name);
+  const repoResults = await Promise.allSettled(
+    names.map((n) => fetchJson(`https://api.github.com/repos/AttentionCoo/${n}`))
+  );
+  repoResults.forEach((r, i) => {
+    if (r.status === "fulfilled" && r.value) {
+      liveData.repos[names[i]] = {
+        stars: r.value.stargazers_count || 0,
+        forks: r.value.forks_count || 0,
+      };
+    }
+  });
+
+  const [userRes, reposRes] = await Promise.allSettled([
+    fetchJson("https://api.github.com/users/AttentionCoo"),
+    fetchJson("https://api.github.com/users/AttentionCoo/repos?per_page=100"),
+  ]);
+  if (userRes.status === "fulfilled" && userRes.value) {
+    liveData.followers = userRes.value.followers;
+    liveData.publicRepos = userRes.value.public_repos;
+  }
+  if (reposRes.status === "fulfilled" && Array.isArray(reposRes.value)) {
+    const own = reposRes.value.filter((r) => !r.fork);
+    liveData.totalStars = own.reduce((s, r) => s + (r.stargazers_count || 0), 0);
+  }
+
+  renderProjects();
+  renderStats();
+  updateActivityStatsDom();
+}
+
+// 就地更新「动态」区的统计数字（不重建整个区块，避免打断按钮状态）
+function updateActivityStatsDom() {
+  const cells = document.querySelectorAll(".activity__stat-value");
+  if (cells.length < 3) return;
+  cells[0].textContent = String(statTotalStars()).toLocaleString();
+  cells[1].textContent = String(statPublicRepos()).toLocaleString();
+  cells[2].textContent = String(statFollowers()).toLocaleString();
+}
+
 // ============ 渲染函数 ============
 function renderChips() {
   const box = document.getElementById("about-chips");
@@ -360,12 +467,11 @@ function renderChips() {
 }
 
 function renderStats() {
-  const snap = window.ACTIVITY_SNAPSHOT;
   const items = [
     { num: "1", key: "stats.cvpr" },
-    { num: "3", key: "stats.flagship" },
-    { num: snap ? snap.totalStars : 19, key: "stats.stars" },
-    { num: snap ? snap.totalCommits : 737, key: "stats.commits" },
+    { num: String(data.projects.length), key: "stats.flagship" },
+    { num: statTotalStars(), key: "stats.stars" },
+    { num: statCommits(), key: "stats.commits" },
   ];
   const box = document.getElementById("about-stats");
   box.innerHTML = items
@@ -423,8 +529,8 @@ function renderProjects() {
             .map((tag) => `<span class="m3-chip m3-chip--accent">${tag}</span>`)
             .join("")}
           <span class="project-card__stats">
-            <span class="project-card__stat project-card__stat--star" title="${t("projects.stars")}">${ICONS.star}${p.stars}</span>
-            <span class="project-card__stat" title="${t("projects.forks")}">${ICONS.fork}${p.forks}</span>
+            <span class="project-card__stat project-card__stat--star" title="${t("projects.stars")}">${ICONS.star}${projStars(p)}</span>
+            <span class="project-card__stat" title="${t("projects.forks")}">${ICONS.fork}${projForks(p)}</span>
           </span>
         </div>
         <div class="project-card__actions">
@@ -508,16 +614,18 @@ function renderActivity() {
     .replace("Z", " UTC");
   const noteText =
     (currentLang === "zh"
-      ? "数据每日自动更新（北京时间 00:00）· 最近更新："
-      : "Data refreshes daily at 00:00 CST · Last updated: ") + fetched;
+      ? "页面打开时实时拉取最新数据；快照每日 00:00（北京时间）自动更新 · 快照时间："
+      : "Live values are fetched on page load; snapshot refreshes daily at 00:00 CST · Snapshot: ") + fetched;
+
+  const statVals = [statTotalStars(), statPublicRepos(), statFollowers(), s.totalCommits];
 
   box.innerHTML = `
     <div class="activity__stats">
       ${["totalStars", "publicRepos", "followers", "totalCommits"]
         .map(
-          (k) => `
+          (k, i) => `
         <div class="activity__stat">
-          <span class="activity__stat-value">${s[k].toLocaleString()}</span>
+          <span class="activity__stat-value">${String(statVals[i]).toLocaleString()}</span>
           <span class="activity__stat-label">${t("activity.stats." + k)}</span>
         </div>`
         )
@@ -554,12 +662,31 @@ function renderActivity() {
     </div>
     <p class="activity__note">${noteText}</p>
     <div class="activity__actions">
-      <a class="m3-button m3-button--text" href="https://github.com/AttentionCoo/AttentionCoo.github.io/actions/workflows/refresh-activity.yml" target="_blank" rel="noopener noreferrer">
+      <button class="m3-button m3-button--text" id="live-refresh-btn" type="button">
         <span class="m3-button__label">${t("activity.refresh")}</span>
-        <span class="m3-button__icon" aria-hidden="true">↗</span>
+        <span class="m3-button__icon" aria-hidden="true">${ICONS.refresh}</span>
+      </button>
+      <a class="m3-button m3-button--text" href="https://github.com/AttentionCoo/AttentionCoo.github.io/actions/workflows/refresh-activity.yml" target="_blank" rel="noopener noreferrer">
+        <span class="m3-button__label">${t("activity.fullRefresh")}</span>
+        <span class="m3-button__icon" aria-hidden="true">${ICONS.external}</span>
       </a>
     </div>
   `;
+
+  const btn = document.getElementById("live-refresh-btn");
+  if (btn) {
+    btn.addEventListener("click", async () => {
+      const label = btn.querySelector(".m3-button__label");
+      btn.disabled = true;
+      label.textContent = t("activity.refreshing");
+      await refreshLiveData();
+      label.textContent = t("activity.updated");
+      btn.disabled = false;
+      setTimeout(() => {
+        label.textContent = t("activity.refresh");
+      }, 1500);
+    });
+  }
 }
 
 function renderAll() {
@@ -632,3 +759,6 @@ document.getElementById("year").textContent = new Date().getFullYear();
 
 // ============ 初始化 ============
 renderAll();
+
+// 打开页面即实时拉取 GitHub 最新数据（失败时静默回退到快照）
+refreshLiveData();
