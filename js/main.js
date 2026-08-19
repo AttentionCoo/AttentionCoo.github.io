@@ -173,12 +173,12 @@ const data = {
       stars: 8,
       forks: 1,
       desc: {
-        zh: "多智能体深度检索脑卒中临床辅助决策系统 (CDSS)：以本地医学文献与临床指南为知识底座，Hybrid RAG 双路检索（语义 + BM25）配合证据级溯源。全科、神经专科、临床药师三位专家交叉质询形成可审计共识，内置 NIHSS、rt-PA 剂量等 8 个卒中领域工具与结构化绿道预评估，全链路 SSE 实时呈现思考链 —— 证据先行、过程透明、结果合规。",
-        en: "A multi-agent, deep-retrieval clinical decision support system (CDSS) for stroke care: built on a local knowledge base of medical literature and clinical guidelines, with dual-path Hybrid RAG (semantic + BM25) and evidence-level citation tracing. General, neurological and pharmacist experts cross-examine each other into an auditable consensus, backed by 8 stroke-specific tools (NIHSS, rt-PA dosing, …), structured green-channel triage and full-chain SSE streaming of the reasoning process.",
+        zh: "多智能体深度检索脑卒中临床辅助决策系统 (CDSS)：以本地医学文献与临床指南为知识底座，Hybrid RAG 双路检索（语义 + BM25）配合证据级溯源。全科、神经专科、临床药师三位专家交叉质询形成可审计共识，内置 NIHSS、rt-PA 剂量、ASPECTS 等 16 个卒中领域工具与结构化绿道预评估，全链路 SSE 实时呈现思考链 —— 证据先行、过程透明、结果合规。",
+        en: "A multi-agent, deep-retrieval clinical decision support system (CDSS) for stroke care: built on a local knowledge base of medical literature and clinical guidelines, with dual-path Hybrid RAG (semantic + BM25) and evidence-level citation tracing. General, neurological and pharmacist experts cross-examine each other into an auditable consensus, backed by 16 stroke-specific tools (NIHSS, rt-PA dosing, ASPECTS, …), structured green-channel triage and full-chain SSE streaming of the reasoning process.",
       },
       tags: {
-        zh: ["LangGraph", "Hybrid RAG", "三专家会诊", "SSE 思考链"],
-        en: ["LangGraph", "Hybrid RAG", "Expert Panel", "SSE Streaming"],
+        zh: ["LangGraph", "Hybrid RAG", "三专家会诊", "16 个卒中工具"],
+        en: ["LangGraph", "Hybrid RAG", "Expert Panel", "16 Stroke Tools"],
       },
     },
     {
@@ -189,12 +189,12 @@ const data = {
       stars: 4,
       forks: 0,
       desc: {
-        zh: "「中国软件杯」A3 赛题参赛作品 LearnAgent：面向脑卒中医学教育的多智能体个性化学习系统 —— 9 位专家智能体 + Planner 结构化规划（RePlan 循环）+ 监督者工具调度试点，覆盖 8 维学习画像、8 类资源生成、循证辅导、五维评估、Qwen-VL 影像分析与代码辅助，全流程 SSE 可审计（195 项自动化测试通过）。",
-        en: "LearnAgent, our 'China Software Cup' track A3 entry: a multi-agent personalized learning system for stroke medical education — nine expert agents with Planner-structured execution (RePlan loop) and a supervised tool-dispatch pilot, covering 8-dimension profiling, 8-type resource generation, evidence-based tutoring, 5-dimension assessment, Qwen-VL imaging analysis and code assistance, all auditable via SSE (195 automated tests passing).",
+        zh: "「中国软件杯」A3 赛题参赛作品 LearnAgent：面向脑卒中医学教育的多智能体个性化学习系统 —— 9 位专家以结构化消息会诊、共享黑板协作，画像贯穿「学习 → 评估 → 优化」闭环；Planner 结构化规划（RePlan）+ 监督者自主点将，覆盖 8 维画像、6 类资源生成、循证辅导、五维评估与 Qwen-VL 影像分析，全流程 SSE 可审计（223 项自动化测试通过）。",
+        en: "LearnAgent, our 'China Software Cup' track A3 entry: a multi-agent personalized learning system for stroke medical education — nine expert agents consult via structured messages and a shared blackboard, with the learner profile driving a learn → assess → optimize closed loop; Planner-structured execution (RePlan) plus supervisor-led expert pick, covering 8-dimension profiling, 6-type resource generation, evidence-based tutoring, 5-dimension assessment and Qwen-VL imaging analysis — all auditable via SSE (223 automated tests passing).",
       },
       tags: {
-        zh: ["Vue 3", "Spring Boot", "Planner / RePlan", "9 位专家智能体"],
-        en: ["Vue 3", "Spring Boot", "Planner / RePlan", "9 Expert Agents"],
+        zh: ["Vue 3", "Spring Boot", "黑板会诊", "9 位专家智能体"],
+        en: ["Vue 3", "Spring Boot", "Blackboard Consult", "9 Expert Agents"],
       },
     },
     {
