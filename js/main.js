@@ -189,12 +189,12 @@ const data = {
       stars: 4,
       forks: 0,
       desc: {
-        zh: "「中国软件杯」A3 赛题参赛作品 LearnAgent：面向脑卒中医学教育的多智能体个性化学习系统 —— 10 位专家以结构化消息会诊、共享黑板协作，画像贯穿「学习 → 评估 → 优化」闭环并遵循证据纪律（只记录有证据的事实）；Planner 结构化规划（RePlan）+ 监督者自主点将，覆盖 8 维证据链画像、6 类资源生成、循证辅导、五维评估与 Qwen-VL 影像分析，全流程 SSE 可审计（263 项自动化测试通过）。",
-        en: "LearnAgent, our 'China Software Cup' track A3 entry: a multi-agent personalized learning system for stroke medical education — ten expert agents consult via structured messages and a shared blackboard, with an evidence-disciplined learner profile driving a learn → assess → optimize closed loop (only evidence-backed facts are recorded); Planner-structured execution (RePlan) plus supervisor-led expert pick, covering 8-dimension evidence-chain profiling, 6-type resource generation, evidence-based tutoring, 5-dimension assessment and Qwen-VL imaging analysis — all auditable via SSE (263 automated tests passing).",
+        zh: "「中国软件杯」A3 赛题参赛作品 LearnAgent：面向脑卒中医学教育的多智能体个性化学习系统 ——「监督者为脑、专家为手」：监督者 LLM 以 5 工具（检索 / 会诊 / 点将 / 报告 / 画像查询）动态派发，10 位可寻址专家（AgentRegistry）支持精确点将与结构化消息会诊 + 共享黑板 + Claim/Evidence 证据仲裁；8 维证据链画像贯穿「学习 → 评估 → 优化」闭环，Planner/RePlan 作确定性回退，覆盖 6 类资源生成、循证辅导与 Qwen-VL 影像分析，全流程 SSE 可审计（263 项自动化测试通过）。",
+        en: "LearnAgent, our 'China Software Cup' track A3 entry: a multi-agent personalized learning system for stroke medical education — a supervisor-as-brain, experts-as-hands design where a supervisor LLM dispatches across 5 tools (retrieval / consultation / expert pick / report / profile query) among 10 addressable Specialist Agents (AgentRegistry) for precise delegation or structured blackboard consultation with Claim/Evidence arbitration; an 8-dimension evidence-chain learner profile drives the learn → assess → optimize closed loop, Planner/RePlan acting as deterministic fallback — covering 6 resource types, evidence-based tutoring and Qwen-VL imaging analysis, all auditable via SSE (263 automated tests passing).",
       },
       tags: {
-        zh: ["Vue 3", "Spring Boot", "黑板会诊", "10 位专家智能体"],
-        en: ["Vue 3", "Spring Boot", "Blackboard Consult", "10 Expert Agents"],
+        zh: ["Vue 3", "Spring Boot", "监督者路由", "10 位专家 Agent"],
+        en: ["Vue 3", "Spring Boot", "Supervisor Route", "10 Expert Agents"],
       },
     },
     {
