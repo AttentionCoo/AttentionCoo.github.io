@@ -707,6 +707,7 @@ function renderAll() {
   });
   // 标题随语言切换
   document.title = currentLang === "zh" ? "AttentionCoo · 个人主页" : "AttentionCoo · Personal Homepage";
+  document.dispatchEvent(new CustomEvent("attentioncoo:rendered", { detail: { lang: currentLang } }));
 }
 
 // ============ 语言切换 ============
