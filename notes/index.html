@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh" data-theme="paper">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Research notes, build logs and experiments by AttentionCoo on agents, clinical AI and multimodal reasoning." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Notes · AttentionCoo" />
+  <meta property="og:description" content="Research notes, build logs and experiments by AttentionCoo on agents, clinical AI and multimodal reasoning." />
+  <meta property="og:url" content="https://attentioncoo.github.io/notes/" />
+  <meta property="og:image" content="https://attentioncoo.github.io/img/og-notes.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Notes · AttentionCoo" />
+  <meta name="twitter:description" content="Research notes, build logs and experiments by AttentionCoo on agents, clinical AI and multimodal reasoning." />
+  <meta name="twitter:image" content="https://attentioncoo.github.io/img/og-notes.png" />
+  <meta name="theme-color" content="#f3eee3" />
+  <title>Notes · AttentionCoo</title>
+  <link rel="canonical" href="https://attentioncoo.github.io/notes/" />
+  <link rel="alternate" type="application/rss+xml" title="AttentionCoo Notes" href="/feed.xml" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23f3eee3'/%3E%3Cpath d='M50 18l8 24 25 1-20 15 7 25-20-15-20 15 7-25-20-15 25-1z' fill='%230e6e86'/%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('aco-theme') || 'paper';
+        var lang = localStorage.getItem('aco-lang') || 'zh';
+        document.documentElement.dataset.theme = theme === 'night' ? 'night' : 'paper';
+        document.documentElement.dataset.lang = lang === 'en' ? 'en' : 'zh';
+        document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+      } catch (error) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/site.css" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+</head>
+<body data-page="notes" data-title-zh="笔记 · AttentionCoo" data-title-en="Notes · AttentionCoo">
+  <a class="skip-link" href="#main"><span class="lang-zh">跳到主要内容</span><span class="lang-en">Skip to content</span></a>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="eyebrow">02 / Notes</p>
+        <h1>
+          <span class="lang-zh">写作是思考的慢动作。</span>
+          <span class="lang-en">Writing is thinking in slow motion.</span>
+        </h1>
+        <p class="lead">
+          <span class="lang-zh">研究笔记、Build Log 和实验记录。这里记录我如何理解系统、失败和取舍，而不是只发布结论。</span>
+          <span class="lang-en">Research notes, build logs and experiment records. This is where I work through systems, failures and tradeoffs — not just conclusions.</span>
+        </p>
+        <div class="research-actions">
+          <a class="button button--ghost" href="/feed.xml">RSS ↗</a>
+          <a class="button button--text" href="mailto:1759751014@qq.com">Suggest a topic ↗</a>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <div class="note-list" id="notes-list"></div>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="section-index">FORMAT</span>
+            <h2><span class="lang-zh">三种记录</span><span class="lang-en">Three kinds of notes</span></h2>
+          </div>
+        </div>
+        <ul class="research-finding-list">
+          <li><span class="lang-zh"><strong>Research Note</strong>：论文阅读、概念梳理和研究判断。</span><span class="lang-en"><strong>Research Note</strong>: paper reading, concept maps and research judgment.</span></li>
+          <li><span class="lang-zh"><strong>Build Log</strong>：系统设计、工程取舍与失败复盘。</span><span class="lang-en"><strong>Build Log</strong>: system design, engineering tradeoffs and postmortems.</span></li>
+          <li><span class="lang-zh"><strong>Experiment Log</strong>：模型实验、评测结果和问题分析。</span><span class="lang-en"><strong>Experiment Log</strong>: model experiments, evaluation results and analysis.</span></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="/js/site-data.js"></script>
+  <script src="/js/activity-data.js"></script>
+  <script src="/js/site.js"></script>
+</body>
+</html>

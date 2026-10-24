@@ -1,4 +1,5 @@
 ﻿User-agent: *
 Allow: /
+Disallow: /v2.html
 
 Sitemap: https://attentioncoo.github.io/sitemap.xml

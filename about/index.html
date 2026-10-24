@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh" data-theme="night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About AttentionCoo: multi-agent systems, clinical AI, multimodal research and a bias toward auditable systems." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="About · AttentionCoo" />
+  <meta property="og:description" content="About AttentionCoo: multi-agent systems, clinical AI, multimodal research and a bias toward auditable systems." />
+  <meta property="og:url" content="https://attentioncoo.github.io/about/" />
+  <meta property="og:image" content="https://attentioncoo.github.io/img/og-about.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="About · AttentionCoo" />
+  <meta name="twitter:description" content="About AttentionCoo: multi-agent systems, clinical AI, multimodal research and a bias toward auditable systems." />
+  <meta name="twitter:image" content="https://attentioncoo.github.io/img/og-about.png" />
+  <meta name="theme-color" content="#07080d" />
+  <title>About · AttentionCoo</title>
+  <link rel="canonical" href="https://attentioncoo.github.io/about/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2307080d'/%3E%3Cpath d='M50 18l8 24 25 1-20 15 7 25-20-15-20 15 7-25-20-15 25-1z' fill='%239adcf4'/%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('aco-theme') || 'night';
+        var lang = localStorage.getItem('aco-lang') || 'zh';
+        document.documentElement.dataset.theme = theme === 'paper' ? 'paper' : 'night';
+        document.documentElement.dataset.lang = lang === 'en' ? 'en' : 'zh';
+        document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+      } catch (error) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/site.css" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+</head>
+<body data-page="about" data-title-zh="关于 · AttentionCoo" data-title-en="About · AttentionCoo">
+  <a class="skip-link" href="#main"><span class="lang-zh">跳到主要内容</span><span class="lang-en">Skip to content</span></a>
+  <div id="site-header"></div>
+  <main id="main">
+    <div class="container about-intro">
+      <div class="about-portrait">
+        <img src="/img/avatar.jpg" alt="AttentionCoo" width="240" height="240" />
+        <div class="status-pill"><span class="status-dot" aria-hidden="true"></span><span class="lang-zh">开放研究合作</span><span class="lang-en">Open to research collaboration</span></div>
+      </div>
+      <div class="about-copy">
+        <p class="eyebrow">04 / About</p>
+        <h1><span class="lang-zh">在系统与抽象之间工作。</span><span class="lang-en">Working between systems and abstraction.</span></h1>
+        <p class="lead">
+          <span class="lang-zh">我是 AttentionCoo，一名 AI 开发者与研究者。我关注多智能体系统、大模型应用与多模态抽象推理，喜欢把复杂推理过程做成可检查、可讨论、可回退的工程系统。</span>
+          <span class="lang-en">I am AttentionCoo, an AI developer and researcher. I work on multi-agent systems, LLM applications and multimodal abstract reasoning, with a bias toward reasoning processes that are inspectable, discussable and recoverable.</span>
+        </p>
+        <p class="muted">
+          <span class="lang-zh">我相信好的系统源于优雅的设计，代码是最接近魔法的东西。这个站点既是作品集，也是我的公开研究笔记本。</span>
+          <span class="lang-en">I believe good systems come from elegant design, and code is the closest thing to magic. This site is both a portfolio and a public research notebook.</span>
+        </p>
+        <div class="hero-actions">
+          <a class="button button--primary" href="/about/cv.html"><span class="lang-zh">查看 CV</span><span class="lang-en">View CV</span></a>
+          <a class="button button--ghost" href="https://github.com/AttentionCoo" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a class="button button--text" href="mailto:1759751014@qq.com">Email ↗</a>
+        </div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-index">01 / JOURNEY</span>
+            <h2><span class="lang-zh">一路走来</span><span class="lang-en">Journey</span></h2>
+          </div>
+        </div>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-index">02 / CAPABILITIES</span>
+            <h2><span class="lang-zh">能力有证据</span><span class="lang-en">Capabilities with evidence</span></h2>
+          </div>
+        </div>
+        <div class="skill-grid" id="skills-grid"></div>
+      </div>
+    </section>
+    <section class="section" id="activity">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-index">03 / ACTIVITY</span>
+            <h2><span class="lang-zh">公开构建的痕迹</span><span class="lang-en">Building in public</span></h2>
+          </div>
+          <a class="section-link" href="https://github.com/AttentionCoo" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
+        <div id="activity-card"></div>
+      </div>
+    </section>
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-index">04 / PRINCIPLES</span>
+            <h2><span class="lang-zh">我怎样做事</span><span class="lang-en">How I work</span></h2>
+          </div>
+        </div>
+        <ul class="research-finding-list">
+          <li><span class="lang-zh"><strong>先定义证据</strong>，再讨论结论。可验证性应该出现在系统设计的第一天。</span><span class="lang-en"><strong>Define evidence first</strong>, then discuss conclusions. Verifiability belongs on day one of system design.</span></li>
+          <li><span class="lang-zh"><strong>让失败可定位</strong>。一个系统如果不允许回退和纠错，就没有真正的可靠性。</span><span class="lang-en"><strong>Make failure locatable</strong>. A system without fallback and correction is not genuinely reliable.</span></li>
+          <li><span class="lang-zh"><strong>用作品说话</strong>。技能不应该是一个百分比，而应该对应到项目、测试或研究结果。</span><span class="lang-en"><strong>Let the work speak</strong>. A skill should map to a project, test or research result, not a percentage.</span></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="/js/site-data.js"></script>
+  <script src="/js/activity-data.js"></script>
+  <script src="/js/site.js"></script>
+</body>
+</html>

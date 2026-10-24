@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh" data-theme="night">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Selected AI systems and experiments by AttentionCoo: auditable multi-agent clinical reasoning, personalized learning and tabular learning." />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Work · AttentionCoo" />
+  <meta property="og:description" content="Selected AI systems and experiments by AttentionCoo: auditable multi-agent clinical reasoning, personalized learning and tabular learning." />
+  <meta property="og:url" content="https://attentioncoo.github.io/work/" />
+  <meta property="og:image" content="https://attentioncoo.github.io/img/og-work.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Work · AttentionCoo" />
+  <meta name="twitter:description" content="Selected AI systems and experiments by AttentionCoo: auditable multi-agent clinical reasoning, personalized learning and tabular learning." />
+  <meta name="twitter:image" content="https://attentioncoo.github.io/img/og-work.png" />
+  <meta name="theme-color" content="#07080d" />
+  <title>Work · AttentionCoo</title>
+  <link rel="canonical" href="https://attentioncoo.github.io/work/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2307080d'/%3E%3Cpath d='M50 18l8 24 25 1-20 15 7 25-20-15-20 15 7-25-20-15 25-1z' fill='%239adcf4'/%3E%3C/svg%3E" />
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('aco-theme') || 'night';
+        var lang = localStorage.getItem('aco-lang') || 'zh';
+        document.documentElement.dataset.theme = theme === 'paper' ? 'paper' : 'night';
+        document.documentElement.dataset.lang = lang === 'en' ? 'en' : 'zh';
+        document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
+      } catch (error) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/site.css" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+</head>
+<body data-page="work" data-title-zh="项目 · AttentionCoo" data-title-en="Work · AttentionCoo">
+  <a class="skip-link" href="#main"><span class="lang-zh">跳到主要内容</span><span class="lang-en">Skip to content</span></a>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="page-head">
+      <div class="container">
+        <p class="eyebrow">01 / Work</p>
+        <h1>
+          <span class="lang-zh">系统、工具与实验。</span>
+          <span class="lang-en">Systems, tools and experiments.</span>
+        </h1>
+        <p class="lead">
+          <span class="lang-zh">我不只展示结果，也展示问题、约束、关键决策和可验证证据。每个项目都从真实约束出发。</span>
+          <span class="lang-en">I show the problem, constraints, decisions and evidence — not only the final result. Each project starts from a real constraint.</span>
+        </p>
+      </div>
+    </section>
+    <div class="container">
+      <div class="filter-bar">
+        <span class="filter-label">Filter</span>
+        <button class="filter-button" type="button" data-work-filter="all" aria-pressed="true"><span class="lang-zh">全部</span><span class="lang-en">All</span></button>
+        <button class="filter-button" type="button" data-work-filter="research"><span class="lang-zh">研究</span><span class="lang-en">Research</span></button>
+        <button class="filter-button" type="button" data-work-filter="engineering"><span class="lang-zh">工程</span><span class="lang-en">Engineering</span></button>
+        <button class="filter-button" type="button" data-work-filter="experiment"><span class="lang-zh">实验</span><span class="lang-en">Experiment</span></button>
+        <span class="result-count" id="work-count"></span>
+      </div>
+      <div class="work-list" id="work-list" style="margin-top: 28px;"></div>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="section-index">02 / PRINCIPLES</span>
+            <h2><span class="lang-zh">我优化什么</span><span class="lang-en">What I optimize for</span></h2>
+          </div>
+        </div>
+        <ul class="research-finding-list">
+          <li><span class="lang-zh"><strong>可审计性</strong>：让结果之外的过程、工具和证据可以被检查。</span><span class="lang-en"><strong>Auditability</strong>: make processes, tools and evidence inspectable beyond the answer.</span></li>
+          <li><span class="lang-zh"><strong>可回退性</strong>：复杂编排需要确定性的回退路径，而不是只依赖一次生成。</span><span class="lang-en"><strong>Recoverability</strong>: complex orchestration needs deterministic fallbacks, not a single generation.</span></li>
+          <li><span class="lang-zh"><strong>可验证性</strong>：用测试、指标、证据和真实交互证明系统做到了什么。</span><span class="lang-en"><strong>Verifiability</strong>: prove what the system does with tests, metrics, evidence and real interactions.</span></li>
+        </ul>
+      </section>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="/js/site-data.js"></script>
+  <script src="/js/activity-data.js"></script>
+  <script src="/js/site.js"></script>
+</body>
+</html>

@@ -1,322 +1,184 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+﻿<!DOCTYPE html>
+<html lang="zh-CN" data-lang="zh" data-theme="night">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="AttentionCoo 的个人主页 —— AI 开发者与研究者：多智能体系统、大模型应用与多模态研究（CVPR 2026 Findings）。" />
+  <meta name="description" content="AttentionCoo builds auditable multi-agent systems and studies how multimodal models understand the world." />
   <meta name="author" content="AttentionCoo" />
-  <meta name="theme-color" content="#06081a" />
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="AttentionCoo" />
-  <meta property="og:title" content="AttentionCoo · AI Systems & Research" />
-  <meta property="og:description" content="Multi-Agent Systems · LLM Applications · Multimodal Research. CVPR 2026 Findings author." />
-  <meta property="og:url" content="https://attentioncoo.github.io/" />
-  <meta property="og:image" content="https://attentioncoo.github.io/img/og-cover.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:locale" content="zh_CN" />
-  <meta property="og:locale:alternate" content="en_US" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AttentionCoo · AI Systems & Research" />
-  <meta name="twitter:description" content="Multi-Agent Systems · LLM Applications · Multimodal Research." />
-  <meta name="twitter:image" content="https://attentioncoo.github.io/img/og-cover.png" />
-  <title>AttentionCoo · 个人主页</title>
+  <meta name="theme-color" content="#07080d" />
+  <title>AttentionCoo · Auditable AI Systems & Multimodal Research</title>
   <link rel="canonical" href="https://attentioncoo.github.io/" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%238b5cf6'/%3E%3Cstop offset='1' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='100' height='100' rx='24' fill='url(%23g)'/%3E%3Cpath d='M50 16l9 27 28 1-22 17 8 27-23-17-23 17 8-27-22-17 28-1z' fill='%23fff'/%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2307080d'/%3E%3Cpath d='M50 18l8 24 25 1-20 15 7 25-20-15-20 15 7-25-20-15 25-1z' fill='%239adcf4'/%3E%3C/svg%3E" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="AttentionCoo · Auditable AI Systems & Multimodal Research" />
+  <meta property="og:description" content="Auditable multi-agent systems, clinical reasoning and multimodal model research." />
+  <meta property="og:url" content="https://attentioncoo.github.io/" />
+  <meta property="og:image" content="https://attentioncoo.github.io/img/og-home.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="alternate" type="application/rss+xml" title="AttentionCoo Notes" href="/feed.xml" />
   <script>
-    // 首帧前应用已保存的语言，避免闪烁
     (function () {
       try {
-        var lang = localStorage.getItem('attentioncoo-lang');
+        var theme = localStorage.getItem('aco-theme') || 'night';
+        var lang = localStorage.getItem('aco-lang') || 'zh';
+        document.documentElement.dataset.theme = theme === 'paper' ? 'paper' : 'night';
+        document.documentElement.dataset.lang = lang === 'en' ? 'en' : 'zh';
         document.documentElement.lang = lang === 'en' ? 'en' : 'zh-CN';
-      } catch (err) { /* ignore */ }
+      } catch (error) {}
     })();
   </script>
+  <link rel="stylesheet" href="/css/site.css" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "AttentionCoo",
-      "url": "https://attentioncoo.github.io/",
-      "image": "https://attentioncoo.github.io/img/avatar.jpg",
-      "email": "mailto:1759751014@qq.com",
-      "sameAs": ["https://github.com/AttentionCoo"],
-      "knowsAbout": ["Multi-Agent Systems", "Large Language Models", "Multimodal LLMs", "Clinical Decision Support"]
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "AttentionCoo",
+  "url": "https://attentioncoo.github.io/",
+  "description": "Auditable multi-agent systems, clinical reasoning and multimodal model research."
+}
   </script>
   <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ScholarlyArticle",
-      "name": "Seeing the Abstract: A Benchmark for Visual-Only Metaphor Understanding in Multimodal Large Language Models",
-      "author": ["Shan Zhao", "Zhao Yang", "Tianwei Yan", "Yusong Gong", "Qian Wan", "Shizhao Chen", "Shezheng Song", "Chengyu Wang", "Meng Wang"],
-      "datePublished": "2026",
-      "isPartOf": {"@type": "PublicationVolume", "name": "CVPR 2026 Findings"},
-      "url": "https://www.openaccess.thecvf.com/content/CVPR2026F/html/Zhao_Seeing_the_Abstract_A_Benchmark_for_Visual-Only_Metaphor_Understanding_in_CVPRF_2026_paper.html"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "AttentionCoo",
+  "url": "https://attentioncoo.github.io/",
+  "image": "https://attentioncoo.github.io/img/avatar.jpg",
+  "email": "mailto:1759751014@qq.com",
+  "sameAs": [
+    "https://github.com/AttentionCoo"
+  ],
+  "knowsAbout": [
+    "Multi-Agent Systems",
+    "Large Language Models",
+    "Multimodal LLMs",
+    "Clinical Decision Support"
+  ]
+}
   </script>
-  <link rel="stylesheet" href="css/style.css?v=12" />
 </head>
-<body>
-  <a class="skip-link" href="#main-content" data-i18n="a11y.skip">跳到主要内容</a>
-
-  <!-- 星空画布与极光（固定背景层） -->
-  <canvas id="stars" aria-hidden="true"></canvas>
-  <div class="aurora" aria-hidden="true">
-    <span class="blob blob-violet"></span>
-    <span class="blob blob-cyan"></span>
-    <span class="blob blob-pink"></span>
-  </div>
-
-  <!-- 顶部应用栏 -->
-  <header class="appbar">
-    <div class="container appbar__inner">
-      <a class="appbar__brand" href="#top" aria-label="AttentionCoo · Home">
-        <img class="appbar__avatar" src="img/avatar.jpg" alt="" width="32" height="32" />
-        <span class="appbar__name">AttentionCoo</span>
-      </a>
-      <nav class="appbar__nav" aria-label="Primary">
-        <a class="appbar__link" href="#about" data-i18n="nav.about">关于</a>
-        <a class="appbar__link" href="#journey" data-i18n="nav.journey">经历</a>
-        <a class="appbar__link" href="#skills" data-i18n="nav.skills">技能</a>
-        <a class="appbar__link" href="#projects" data-i18n="nav.projects">项目</a>
-        <a class="appbar__link" href="#publications" data-i18n="nav.publications">论文</a>
-        <a class="appbar__link" href="#activity" data-i18n="nav.activity">动态</a>
-        <a class="appbar__link" href="#contact" data-i18n="nav.contact">联系</a>
-      </nav>
-      <div class="appbar__actions">
-        <button class="appbar__search" id="open-search" type="button" aria-haspopup="dialog" aria-keyshortcuts="Control+K Meta+K">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-          <span class="appbar__search-label" data-i18n="search.open">搜索</span>
-          <kbd id="search-shortcut" class="appbar__search-kbd">⌘K</kbd>
-        </button>
-        <div class="lang-toggle" role="group" aria-label="Language / 语言">
-          <button class="lang-btn" type="button" data-lang="zh">中</button>
-          <button class="lang-btn" type="button" data-lang="en">EN</button>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- 分屏布局：右侧固定英雄面板 + 左侧滚动内容 -->
-  <div class="layout">
-    <aside class="layout__hero">
-      <section id="top" class="hero">
-        <div class="container hero__inner">
-          <img class="hero__avatar" src="img/avatar.jpg" alt="AttentionCoo" width="128" height="128" />
-          <h1 class="hero__name">AttentionCoo</h1>
-          <p class="hero__role" data-i18n="hero.role">AI 开发者 · 多智能体 / 大模型研究</p>
-          <p class="hero__tagline" data-i18n="hero.tagline">AttentionCoo is all you need.</p>
-          <p class="hero__bio" data-i18n="hero.bio">构建多智能体系统，探索多模态大模型的边界 —— 欢迎来到我的小站。</p>
-          <p class="hero__status">
-            <span class="hero__status-dot" aria-hidden="true"></span>
-            <span data-i18n="hero.status">公开构建中 · 欢迎研究合作</span>
+<body data-page="home" data-title-zh="AttentionCoo · 可审计的 AI 系统与多模态研究" data-title-en="AttentionCoo · Auditable AI Systems & Multimodal Research">
+  <a class="skip-link" href="#main">
+    <span class="lang-zh">跳到主要内容</span><span class="lang-en">Skip to content</span>
+  </a>
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">AttentionCoo · AI systems & research</p>
+          <h1>
+            <span class="lang-zh">构建<em>可审计</em>的 Agent 系统，研究模型如何理解世界。</span>
+            <span class="lang-en">I build <em>auditable</em> agents and study how models understand the world.</span>
+          </h1>
+          <p class="hero-lead">
+            <span class="lang-zh">从卒中临床决策到多模态隐喻评测，我关注让复杂推理过程变得可检查、可讨论、可改进。</span>
+            <span class="lang-en">From clinical decision support to multimodal metaphor evaluation, I care about making complex reasoning inspectable, discussable and improvable.</span>
           </p>
-
-          <div class="hero__intents" id="hero-intents" role="group" aria-label="Explore mode">
-            <p class="hero__intent-label" data-i18n="hero.intentLabel">你想先看什么？</p>
-            <div class="hero__intent-options">
-              <button class="intent-btn" type="button" data-intent="explorer" data-i18n="intent.explorer" aria-pressed="false">随便看看</button>
-              <button class="intent-btn" type="button" data-intent="recruiter" data-i18n="intent.recruiter" aria-pressed="false">招聘者</button>
-              <button class="intent-btn" type="button" data-intent="researcher" data-i18n="intent.researcher" aria-pressed="false">研究者</button>
-              <button class="intent-btn" type="button" data-intent="collaborator" data-i18n="intent.collaborator" aria-pressed="false">合作者</button>
-            </div>
-            <p class="hero__intent-hint" id="intent-hint" aria-live="polite">从项目案例开始，看看我如何构建系统。</p>
-          </div>
-
-          <div class="hero__actions">
-            <a class="m3-button m3-button--filled" id="hero-primary-cta" href="#projects">
-              <span class="m3-button__label" id="hero-primary-label">探索项目</span>
+          <div class="hero-actions">
+            <a class="button button--primary" href="/work/">
+              <span class="lang-zh">查看项目</span><span class="lang-en">View work</span>
             </a>
-            <a class="m3-button m3-button--tonal" href="https://github.com/AttentionCoo" target="_blank" rel="noopener noreferrer">
-              <span class="m3-button__label">GitHub</span>
+            <a class="button button--ghost" href="/notes/">
+              <span class="lang-zh">阅读笔记</span><span class="lang-en">Read notes</span>
             </a>
+            <a class="button button--text" href="mailto:1759751014@qq.com">Email ↗</a>
           </div>
         </div>
-      </section>
-    </aside>
-
-    <div class="layout__content">
-      <main id="main-content">
-        <!-- 关于我 -->
-        <section class="m3-section" id="about">
-          <div class="m3-section__header">
-            <p class="m3-section__eyebrow" data-i18n="about.eyebrow">关于</p>
-            <h2 class="m3-section__title" data-i18n="about.title">关于我</h2>
-          </div>
-          <div class="about__body">
-            <p class="about__p" data-i18n="about.p1">我是 AttentionCoo，一名热爱 AI 的开发者与研究者。我的兴趣集中在多智能体系统与大模型应用：从基于 LangGraph 的脑卒中临床决策支持系统，到「中国软件杯」的个性化学习多智能体。</p>
-            <p class="about__p" data-i18n="about.p2">在研究中，我关注多模态大模型的抽象推理能力 —— 我们在 CVPR 2026 Findings 发表的 VisMet-Bench 基准，系统性评估了模型对纯视觉隐喻的理解。我相信好的系统源于优雅的设计，代码是最接近魔法的东西。</p>
-            <div class="about__focus">
-              <h3 class="about__focus-title" data-i18n="about.focusTitle">关注的方向</h3>
-              <div class="about__chips" id="about-chips">
-                <!-- 由 JS 渲染 -->
-              </div>
+        <aside class="hero-aside">
+          <div class="portrait-wrap">
+            <img class="portrait" src="/img/avatar.jpg" alt="AttentionCoo" width="74" height="74" />
+            <div class="portrait-meta">
+              <span class="portrait-name">AttentionCoo</span>
+              <span class="portrait-role">AI systems · Research · Engineering</span>
             </div>
           </div>
-          <div class="about__now" id="about-now" aria-live="polite">
-            <!-- 由 features.js 渲染 -->
+          <div class="status-pill">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span class="lang-zh">开放研究合作</span><span class="lang-en">Open to research collaboration</span>
           </div>
-          <div class="about__stats" id="about-stats">
-            <!-- 由 JS 渲染 -->
+          <ul class="now-list">
+            <li><span>Building</span><span><span class="lang-zh">LearnAgent 与卒中 CDSS</span><span class="lang-en">LearnAgent & Stroke CDSS</span></span></li>
+            <li><span>Exploring</span><span><span class="lang-zh">多模态视觉隐喻评测</span><span class="lang-en">Visual metaphor evaluation for MLLMs</span></span></li>
+            <li><span>Based</span><span><span class="lang-zh">中国 · UTC+8</span><span class="lang-en">China · UTC+8</span></span></li>
+          </ul>
+          <p class="local-time" data-local-time>China · UTC+8</p>
+        </aside>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-index">01 / WORK</span>
+            <h2><span class="lang-zh">精选项目</span><span class="lang-en">Selected work</span></h2>
           </div>
-        </section>
-
-        <!-- 经历时间线 -->
-        <section class="m3-section" id="journey">
-          <div class="m3-section__header">
-            <p class="m3-section__eyebrow" data-i18n="journey.eyebrow">经历</p>
-            <h2 class="m3-section__title" data-i18n="journey.title">一路走来</h2>
-            <p class="m3-section__subtitle" data-i18n="journey.subtitle">研究、工程和比赛中的关键坐标</p>
-          </div>
-          <div class="timeline" id="timeline">
-            <!-- 由 features.js 渲染 -->
-          </div>
-        </section>
-
-        <!-- 技能 -->
-        <section class="m3-section" id="skills">
-          <div class="m3-section__header">
-            <p class="m3-section__eyebrow" data-i18n="skills.eyebrow">技能</p>
-            <h2 class="m3-section__title" data-i18n="skills.title">技能星图</h2>
-            <p class="m3-section__subtitle" data-i18n="skills.subtitle">我的技术星座</p>
-          </div>
-          <div class="skills-grid" id="skills-grid">
-            <!-- 由 JS 渲染 -->
-          </div>
-        </section>
-
-        <!-- 项目 -->
-        <section class="m3-section" id="projects">
-          <div class="m3-section__header">
-            <p class="m3-section__eyebrow" data-i18n="projects.eyebrow">项目</p>
-            <h2 class="m3-section__title" data-i18n="projects.title">得意之作</h2>
-            <p class="m3-section__subtitle" data-i18n="projects.subtitle">项目与案例 —— Star 与 Fork 为 GitHub 公开数据快照</p>
-          </div>
-          <h3 class="projects__subhead" data-i18n="projects.featuredTitle">项目与案例</h3>
-          <div class="projects__toolbar">
-            <div class="project-controls" id="project-controls">
-              <!-- 由 features.js 渲染 -->
-            </div>
-          </div>
-          <p class="projects__count" id="project-count" aria-live="polite"></p>
-          <div class="projects__grid" id="projects-grid">
-            <!-- 由 JS 渲染 -->
-          </div>
-          <div class="projects__empty" id="projects-empty" hidden>
-            <span aria-hidden="true">✦</span>
-            <p data-i18n="projects.empty">没有找到匹配项目，试试其他关键词。</p>
-          </div>
-          <div class="projects__viewall">
-            <a class="m3-button m3-button--text" href="https://github.com/AttentionCoo?tab=repositories" target="_blank" rel="noopener noreferrer">
-              <span class="m3-button__label" data-i18n="projects.viewAll">在 GitHub 查看全部仓库</span>
-              <span class="m3-button__icon" aria-hidden="true">↗</span>
-            </a>
-          </div>
-        </section>
-
-        <!-- 论文 -->
-        <section class="m3-section" id="publications">
-          <div class="m3-section__header">
-            <p class="m3-section__eyebrow" data-i18n="pubs.eyebrow">论文</p>
-            <h2 class="m3-section__title" data-i18n="pubs.title">论文</h2>
-            <p class="m3-section__subtitle" data-i18n="pubs.subtitle">在学术星空中留下的一颗星</p>
-          </div>
-          <div id="paper-card">
-            <!-- 由 JS 渲染 -->
-          </div>
-        </section>
-
-        <!-- 动态 -->
-        <section class="m3-section" id="activity">
-          <div class="m3-section__header">
-            <p class="m3-section__eyebrow" data-i18n="activity.eyebrow">动态</p>
-            <h2 class="m3-section__title" data-i18n="activity.title">GitHub 活跃情况</h2>
-            <p class="m3-section__subtitle" data-i18n="activity.subtitle">公开贡献统计与提交日历，来源于 GitHub API</p>
-          </div>
-          <div id="activity-box">
-            <!-- 由 JS 渲染 -->
-          </div>
-        </section>
-
-        <!-- 联系 -->
-        <section class="m3-section" id="contact">
-          <div class="m3-section__header">
-            <p class="m3-section__eyebrow" data-i18n="contact.eyebrow">联系</p>
-            <h2 class="m3-section__title" data-i18n="contact.title">找到我</h2>
-            <p class="m3-section__subtitle" data-i18n="contact.subtitle">星光为引，有缘相逢</p>
-          </div>
-          <div class="contact__links">
-            <a class="contact__card spotlight" href="https://github.com/AttentionCoo" target="_blank" rel="noopener noreferrer">
-              <span class="contact__icon" aria-hidden="true"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></span>
-              <span class="contact__card-label">GitHub</span>
-              <span class="contact__card-desc" data-i18n="contact.github.desc">开源与代码</span>
-            </a>
-            <a class="contact__card spotlight" href="mailto:1759751014@qq.com">
-              <span class="contact__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>
-              <span class="contact__card-label" data-i18n="contact.email.label">邮箱</span>
-              <span class="contact__card-desc">1759751014@qq.com</span>
-            </a>
-            <a class="contact__card spotlight" href="tencent://message/?uin=1759751014&site=qq&menu=yes">
-              <span class="contact__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
-              <span class="contact__card-label">QQ</span>
-              <span class="contact__card-desc" data-i18n="contact.qq.desc">即时沟通</span>
-            </a>
-          </div>
-          <div class="contact__actions">
-            <button class="m3-button m3-button--tonal" id="copy-email-btn" type="button" data-copy-email>
-              <span class="m3-button__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg></span>
-              <span class="m3-button__label" data-i18n="contact.copyEmail">复制邮箱</span>
-            </button>
-            <a class="m3-button m3-button--text" href="AttentionCoo.vcf" download="AttentionCoo.vcf">
-              <span class="m3-button__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg></span>
-              <span class="m3-button__label" data-i18n="contact.vcard">保存联系人</span>
-            </a>
-          </div>
-        </section>
-      </main>
-
-      <footer class="m3-footer">
-        <p>© <span id="year"></span> AttentionCoo · <span data-i18n="footer.line">在星空中漫游 ✦ 由 GitHub Pages 驱动</span></p>
-        <p class="m3-footer__meta"><span>v2.0</span> · <span data-i18n="footer.note">Static-first · 数据由 GitHub Actions 更新</span></p>
-      </footer>
-    </div>
-  </div>
-
-  <!-- 全局搜索 / 命令面板 -->
-  <dialog class="site-dialog search-dialog" id="search-dialog" aria-labelledby="search-dialog-title">
-    <div class="search-dialog__shell">
-      <div class="search-dialog__head">
-        <div>
-          <p class="dialog-eyebrow" data-i18n="search.eyebrow">Spotlight</p>
-          <h2 class="dialog-title" id="search-dialog-title" data-i18n="search.title">搜索星站</h2>
+          <a class="section-link" href="/work/">
+            <span class="lang-zh">全部项目</span><span class="lang-en">All work</span> ↗
+          </a>
         </div>
-        <button class="icon-button" type="button" data-close-search aria-label="关闭">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-        </button>
+        <div class="work-list" id="featured-work"></div>
       </div>
-      <div class="command-input-wrap">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <label class="sr-only" for="command-input" data-i18n="search.title">搜索星站</label>
-        <input id="command-input" type="search" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="command-results" placeholder="搜索项目、论文、经历或联系方式…" />
+    </section>
+
+    <section class="section section--soft">
+      <div class="container">
+        <div class="research-spotlight">
+          <div>
+            <div class="research-badge">CVPR 2026 Findings</div>
+            <h2><a href="/research/">VisMet-Bench</a></h2>
+            <p>
+              <span class="lang-zh">Seeing the Abstract：面向多模态大模型纯视觉隐喻理解的评测基准。我们系统评估了 11 个先进 MLLM，揭示跨域隐喻推理与人类水平之间仍有明显差距。</span>
+              <span class="lang-en">Seeing the Abstract: a benchmark for visual-only metaphor understanding in MLLMs. Across 11 advanced models, cross-domain metaphor reasoning remains far from human-level.</span>
+            </p>
+            <div class="research-actions">
+              <a class="button button--ghost" href="/research/"><span class="lang-zh">阅读研究概览</span><span class="lang-en">Read the research brief</span> →</a>
+              <a class="button button--text" href="https://www.openaccess.thecvf.com/content/CVPR2026F/html/Zhao_Seeing_the_Abstract_A_Benchmark_for_Visual-Only_Metaphor_Understanding_in_CVPRF_2026_paper.html" target="_blank" rel="noopener noreferrer">Paper ↗</a>
+            </div>
+          </div>
+          <div class="research-visual">
+            <div class="metric"><strong>754</strong><span><span class="lang-zh">组图像对</span><span class="lang-en">image pairs</span></span></div>
+            <div class="metric"><strong>5</strong><span><span class="lang-zh">类递进任务</span><span class="lang-en">task families</span></span></div>
+            <div class="metric"><strong>11</strong><span><span class="lang-zh">评测 MLLM</span><span class="lang-en">MLLMs evaluated</span></span></div>
+          </div>
+        </div>
       </div>
-      <div class="command-results" id="command-results" role="listbox" aria-label="搜索结果"></div>
-      <div class="command-footer">
-        <span data-i18n="search.hint">↑↓ 选择 · Enter 打开 · Esc 关闭</span>
-        <span class="command-footer__brand">AttentionCoo / ⌘K</span>
+    </section>
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-index">03 / NOTES</span>
+            <h2><span class="lang-zh">最近笔记</span><span class="lang-en">Latest notes</span></h2>
+          </div>
+          <a class="section-link" href="/notes/">
+            <span class="lang-zh">全部笔记</span><span class="lang-en">All notes</span> ↗
+          </a>
+        </div>
+        <div class="note-list" id="latest-notes"></div>
       </div>
-    </div>
-  </dialog>
+    </section>
 
-  <!-- 项目案例弹窗 -->
-  <dialog class="site-dialog project-dialog" id="project-dialog" aria-labelledby="project-detail-title">
-    <div id="project-detail"></div>
-  </dialog>
+    <section class="section section--soft">
+      <div class="container contact-block">
+        <h2>
+          <span class="lang-zh">有值得做的事？<br>发一封邮件。</span>
+          <span class="lang-en">Building something worth<br>a careful conversation?</span>
+        </h2>
+        <div class="contact-links">
+          <a href="mailto:1759751014@qq.com">Email ↗</a>
+          <a href="https://github.com/AttentionCoo" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a href="/about/cv.html">CV ↗</a>
+          <a href="/feed.xml">RSS ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  <div class="site-toast" id="site-toast" role="status" aria-live="polite" aria-atomic="true"></div>
-
-  <script src="js/activity-data.js?v=12"></script>
-  <script src="js/main.js?v=12"></script>
-  <script src="js/features.js?v=12"></script>
+  <div id="site-footer"></div>
+  <script src="/js/site-data.js"></script>
+  <script src="/js/activity-data.js"></script>
+  <script src="/js/site.js"></script>
 </body>
 </html>
