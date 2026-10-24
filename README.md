@@ -1,128 +1,106 @@
 ﻿# AttentionCoo.github.io
 
-我的个人研究站与作品集，当前版本 **V3 Signal / 信号站**。从单页个人名片重构为内容优先的多页面站点：项目案例、研究笔记、论文概览、经历与 CV。
+我的 GitHub Pages 个人主页 —— 星空极光背景 + Material Design 3 设计体系，纯 HTML / CSS / JavaScript 实现，零依赖、零构建。
 
-## 现在有什么
+## ✨ 特性
 
-- 首页：一句话定位、当前状态、精选项目、研究亮点、最近笔记和联系方式
-- Work：项目索引与独立案例页，覆盖问题、约束、系统结构、关键决策、结果和下一步
-- Notes：Research Note / Build Log / Experiment Log，支持中英双语、RSS 和独立阅读页
-- Research：VisMet-Bench 研究概览、关键指标、Tab 式分析与 BibTeX 复制
-- About：个人介绍、经历时间线、能力证据、GitHub 活动与 CV
-- 深空 Night / 纸张 Paper 双主题，阅读页默认进入纸张模式
-- 中英双语：首帧读取本地偏好，避免语言闪烁
-- 全局搜索：Ctrl / Cmd + K 搜索项目、笔记、研究与快捷操作
-- SEO / 分享：每页 Open Graph、JSON-LD、sitemap、canonical、RSS
-- PWA：可安装、离线缓存核心页面，仅在 HTTPS 生产环境注册 Service Worker
-- 可访问性：跳过导航、键盘搜索、焦点样式、语言与主题切换、减少动态效果支持
-- 无前端依赖：原生 HTML / CSS / JavaScript，无框架、无构建即可浏览
+- 🪐 分屏布局：右侧固定玻璃英雄面板（个人名片）+ 左侧滚动内容
+- 🌌 星空银河背景：Canvas 星空粒子、流星、流动极光光斑
+- 🎨 Material Design 3 设计令牌：字阶、间距、形状、阴影、动效全部走 CSS 变量
+- 🌐 中英双语切换（记忆偏好，首帧不闪烁）
+- 🧭 访客意图模式：招聘者 / 研究者 / 合作者 / 探索者，动态推荐浏览路径
+- 🗂️ 项目案例弹窗：背景、关键指标、我的工作、挑战、方案、结果与下一步
+- 🔎 项目筛选与搜索：按研究 / 工程 / 实验分类，支持关键词和多条件 URL
+- ⌨️ 全局命令面板：`Ctrl / Cmd + K` 搜索页面、项目和快捷操作
+- 🧭 滚动导航高亮 + 经历时间线 + Now 状态卡
+- 📊 GitHub 活动图：统计卡片、贡献日历与连续贡献天数
+- 🔄 数据自动刷新：GitHub Actions 每天北京时间 00:00 更新快照，也可手动触发
+- 📜 CVPR 2026 Findings 论文卡片：关键指标、PDF、BibTeX 一键复制
+- 📇 联系方式增强：复制邮箱、下载 vCard、QQ / GitHub / Email 入口
+- 🚀 SEO / 分享：Open Graph 图、JSON-LD、sitemap、robots、404 页面
+- 📱 完全响应式，支持 `prefers-reduced-motion`
 
-## 页面结构
+## 🚀 本地预览
 
-```text
-/                     首页
-/work/                项目索引
-/work/stroke-multi-agent-cdss.html
-/work/learning-characterizing-mas.html
-/work/titanic-ft-transformer.html
-/notes/               笔记索引
-/notes/why-auditable-agents-matter.html
-/notes/designing-a-clinical-reasoning-loop.html
-/notes/what-ft-transformer-taught-me.html
-/research/            VisMet-Bench 研究概览
-/about/               关于、经历、能力与 GitHub 活动
-/about/cv.html        可打印 CV
-/v2.html              V2 单页版存档（noindex）
-```
-
-## 本地预览
-
-多页面站点使用绝对路径（`/css/site.css`、`/js/site-data.js`），建议通过本地静态服务器访问：
+直接用浏览器打开 `index.html` 即可，或者用任意静态服务器：
 
 ```bash
 python -m http.server 8000
-# 打开 http://localhost:8000
+# 然后访问 http://localhost:8000
 ```
 
-直接双击 `index.html` 时，部分跨页面绝对路径和 PWA 能力会失效。
+## 🔗 URL 参数
 
-## 内容维护
+项目筛选与案例弹窗会同步到 URL，便于分享和浏览器前进后退：
+
+- `?type=research`：筛选研究类项目
+- `?q=rag`：按关键词筛选项目
+- `?project=stroke-multi-agent-cdss`：直接打开某个项目案例
+- `#publications`：跳转到对应区块
+
+## 📦 部署到 GitHub Pages
+
+1. 把这个仓库推送到 GitHub：
+
+```bash
+git init
+git add .
+git commit -m "init: personal homepage"
+git branch -M master
+git remote add origin https://github.com/AttentionCoo/AttentionCoo.github.io.git
+git push -u origin master
+```
+
+2. 在仓库 **Settings → Pages** 中，将 Source 设为 `Deploy from a branch`，分支选择 `master`（根目录 `/`），保存。
+
+3. 几分钟后访问 **https://attentioncoo.github.io** 即可看到页面。
+
+## 🔄 数据更新机制
+
+页面上的 GitHub 数据有三层来源：
+
+1. **实时拉取**：浏览器调用 GitHub REST API 获取项目 Star/Fork、仓库数、关注者和 Star 总数；失败时静默回退到快照。
+2. **每日快照**：`.github/workflows/refresh-activity.yml` 每天北京时间 00:00 运行，抓取包含认证 GraphQL 的贡献日历并提交回仓库。
+3. **本地脚本**：`HTTPS_PROXY=<代理> GH_TOKEN=<token> python scripts/refresh_activity.py`
+
+> 提示：修改 `css/style.css`、`js/main.js` 或 `js/features.js` 后，把 `index.html` 里的 `?v=12` 版本号加一，强制浏览器刷新缓存。
+
+## ✏️ 自定义
 
 | 想改什么 | 去哪里改 |
 | --- | --- |
-| 站点导航、项目、笔记索引、时间线、技能、论文元数据、UI 文案 | `js/site-data.js` |
-| 首页结构 | `index.html` |
-| 项目索引页 | `work/index.html` |
-| 项目案例页外壳 | `work/*.html`（正文由 `js/site-data.js` 中的 `projects` 渲染） |
-| 笔记索引与文章 | `notes/index.html`、`notes/*.html` |
-| 研究页 | `research/index.html` |
-| 关于页与 CV | `about/index.html`、`about/cv.html` |
-| 全局交互、搜索、主题、语言、PWA 注册 | `js/site.js` |
-| 视觉与响应式 | `css/site.css` |
-| GitHub 活动快照 | `scripts/refresh_activity.py` + `.github/workflows/refresh-activity.yml` |
-| 分享图 | `img/og-home.png`、`og-work.png`、`og-notes.png`、`og-research.png`、`og-about.png` |
-| RSS 与 sitemap | `feed.xml`、`sitemap.xml` |
+| 名字 / 简介 | `index.html` 的 `data-i18n` + `js/main.js` 的 `i18n` |
+| 新增界面文案 | `js/features.js` 顶部的 `extraI18nZh` / `extraI18nEn` |
+| 关注方向 | `js/main.js` 的 `data.focus` |
+| 技能列表 | `js/main.js` 的 `data.skills` |
+| 项目卡片与链接 | `js/main.js` 的 `data.projects` |
+| 项目案例详情 | `js/features.js` 的 `projectDetails` |
+| 论文信息 / BibTeX | `js/main.js` 的 `data.paper` + `js/features.js` 的补充字段 |
+| 时间线 / Now | `js/features.js` 的 `data.timeline`、对应 i18n |
+| 访客模式 | `js/features.js` 的 `intentConfig` |
+| GitHub 活动数据 | 由 `scripts/refresh_activity.py` + Actions 自动生成，勿手改 |
+| 联系方式 | `index.html` 的「联系」区块、`AttentionCoo.vcf` |
+| 配色 / 星空 / 极光 | `css/style.css` 顶部的 MD3 色彩令牌与 `.blob` 样式 |
 
-新增笔记时，需要同时更新：
+## 📄 目录结构
 
-1. `js/site-data.js` 的 `notes` 数组；
-2. 新增一个 `notes/<slug>.html` 阅读页；
-3. `feed.xml` 和 `sitemap.xml`。
-
-## 数据更新机制
-
-GitHub 活动数据继续由 GitHub Actions 每日刷新：
-
-1. 浏览器读取 `js/activity-data.js` 中的公开快照；
-2. `refresh-activity.yml` 每天北京时间 00:00 拉取最新贡献日历并提交；
-3. 也可在本机运行：
-
-```bash
-HTTPS_PROXY=<代理> GH_TOKEN=<token> python scripts/refresh_activity.py
 ```
-
-## 部署
-
-站点仍然是纯静态 GitHub Pages：
-
-1. 推送到 `master`；
-2. 仓库 Settings → Pages → Deploy from a branch → `master` / root；
-3. 等待 Actions 和 Pages 完成部署。
-
-## 缓存与版本
-
-- 页面样式与脚本通过根路径引用：`/css/site.css`、`/js/site.js`、`/js/site-data.js`。
-- PWA 缓存名在 `sw.js` 的 `CACHE_NAME`。修改核心资源后，建议同时更新 `SITE.version`、`CACHE_NAME` 和 README 中的版本说明。
-- `v2.html` 保留旧版单页体验，但不进入搜索索引和 sitemap，并标记为 `noindex`。
-
-## 目录结构
-
-```text
 .
-├── index.html
-├── v2.html                     # V2 存档
-├── 404.html
-├── manifest.webmanifest
-├── sw.js
-├── feed.xml / sitemap.xml / robots.txt
+├── index.html             # 页面结构、SEO、弹窗
+├── 404.html               # GitHub Pages 自定义 404
+├── AttentionCoo.vcf       # 联系人名片
+├── robots.txt / sitemap.xml
 ├── css/
-│   └── site.css
+│   └── style.css          # MD3 设计令牌 + 全站样式
 ├── js/
-│   ├── site-data.js            # 内容与文案
-│   ├── site.js                 # 全站交互
-│   └── activity-data.js        # GitHub 快照
-├── work/
-│   ├── index.html
-│   └── *.html                  # 三个项目案例页
-├── notes/
-│   ├── index.html
-│   └── *.html                  # 三篇双语笔记
-├── research/
-│   └── index.html
-├── about/
-│   ├── index.html
-│   └── cv.html
+│   ├── main.js            # 基础数据、i18n、渲染、星空与实时数据
+│   ├── features.js        # 项目案例、筛选搜索、命令面板、时间线等
+│   └── activity-data.js   # GitHub 活动图数据快照
 ├── img/
+│   ├── avatar.jpg         # GitHub 头像
+│   └── og-cover.png       # Open Graph 分享图
 ├── scripts/
+│   └── refresh_activity.py
 └── .github/workflows/
+    └── refresh-activity.yml
 ```
